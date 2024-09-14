@@ -1,7 +1,10 @@
 /**
  * Package with the business logic of the application.
  */
+
 package businessLogic;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -47,6 +50,7 @@ public class BusinessLogicServer extends JDialog {
 			e.printStackTrace();
 		}
 	}
+	private static final Logger logger = Logger.getLogger(ConfigXML.class.getName());
 
 
 	public BusinessLogicServer() {
@@ -103,7 +107,8 @@ public class BusinessLogicServer extends JDialog {
 			try{
 				
 				if (!c.isDatabaseLocal()) {
-					System.out.println("\nWARNING: Please be sure ObjectdbManagerServer is launched\n           in machine: "+c.getDatabaseNode()+" port: "+c.getDatabasePort()+"\n");	
+					logger.log(Level.WARNING, "\nWARNING: Please be sure ObjectdbManagerServer is launched\n           in machine: {0} port: {1}\n", new Object[]{c.getDatabaseNode(), c.getDatabasePort()});
+	
 				}
 				
 				service= "http://"+c.getBusinessLogicNode() +":"+ c.getBusinessLogicPort()+"/ws/"+c.getBusinessLogicName();
