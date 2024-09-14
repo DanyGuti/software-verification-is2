@@ -1,10 +1,10 @@
 package gui;
-
+import java.util.logging.Logger;
 /**
  * @author Software Engineering teachers
  */
 
-import java.util.logging.Logger.
+
 import javax.swing.*;
 
 import businessLogic.BLFacade;
@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 public class MainGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-
+	Logger logger = Logger.getLogger(getClass().getName());
 	private JPanel jContentPane = null;
 	private JButton jButtonLogIn = null;
 	private JButton jButtonRegister = null;
@@ -63,7 +63,7 @@ public class MainGUI extends JFrame {
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Locale.setDefault(new Locale("en"));
-				System.out.println("Locale: "+Locale.getDefault());
+				logger.info("Locale: "+Locale.getDefault());
 				paintAgain();				}
 		});
 		buttonGroup.add(rdbtnNewRadioButton);
@@ -72,7 +72,7 @@ public class MainGUI extends JFrame {
 		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Locale.setDefault(new Locale("eus"));
-
+				System.out.println("Locale: "+Locale.getDefault());
 				paintAgain();				}
 		});
 		buttonGroup.add(rdbtnNewRadioButton_1);
