@@ -53,11 +53,9 @@ public class AdminGUI extends JFrame {
 		jButtonDeskontu.setText(ResourceBundle.getBundle("Etiquetas").getString("AdminGUI.Deskontua"));
 
 		jButtonkude = new JButton();
-		jButtonkude.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFrame a = new DeskontuKudeatuGUI(username);
-				a.setVisible(true);
-			}
+		jButtonkude.addActionListener(e -> {
+			JFrame a = new DeskontuKudeatuGUI(username);
+			a.setVisible(true);
 		});
 		jButtonkude.setText(ResourceBundle.getBundle("Etiquetas").getString("AdminGUI.Kudea"));
 
