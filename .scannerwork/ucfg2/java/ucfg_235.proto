@@ -1,0 +1,96 @@
+
+SbusinessLogic.BLFacadeImplementation#getAllMovements(Ldomain/User;)Ljava/util/List;Æ
+¹/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/businessLogic/BLFacadeImplementation.javaà à(&"startingBlock*‚
+startingBlock
+à& à(1ˆ
+…
+
+ß ß(
+
+%6"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*1
+
+__unknown_file (
+
+userdomain.UserU
+S
+
+à, à(0
+userdomain.User"__annotation*"
+
+__unknown_file (
+
+%6*
+1*³
+1
+á á(‡
+„
+
+á á(
+%0dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager|z
+
+á á(
+
+%1void"dataAccess.DataAccess#open()V*9
+
+__unknown_file (
+
+%0dataAccess.DataAccess2open()‡
+„
+
+â â("
+%2dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerùö
+
+â â(8
+%3java.util.List"DdataAccess.DataAccess#getAllMovements(Ldomain/User;)Ljava/util/List;*9
+
+__unknown_file (
+
+%2dataAccess.DataAccess*1
+
+__unknown_file (
+
+userdomain.User2getAllMovements(Ldomain/User;)a
+_
+
+â â(9
+movesjava.util.List"__id*2
+
+__unknown_file (
+
+%3java.util.List‡
+„
+
+ã ã(
+%4dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager~|
+
+ã ã(
+
+%5void"dataAccess.DataAccess#close()V*9
+
+__unknown_file (
+
+%4dataAccess.DataAccess2close()"'
+
+ä ä(
+
+movesjava.util.List:!
+
+à' à(0
+userdomain.UserB(&
+$businessLogic.BLFacadeImplementationH

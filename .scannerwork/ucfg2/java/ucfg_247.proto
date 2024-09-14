@@ -1,0 +1,96 @@
+
+UbusinessLogic.BLFacadeImplementation#getDiscount(Ljava/lang/String;)Ldomain/Discount;Æ
+¹/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/businessLogic/BLFacadeImplementation.javaö ö("startingBlock*Œ
+startingBlock
+ö ö()
+Š
+
+õ õ(
+
+%6"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*6
+
+__unknown_file (
+
+deskjava.lang.StringZ
+X
+
+ö$ ö((
+deskjava.lang.String"__annotation*"
+
+__unknown_file (
+
+%6*
+1*»
+1
+÷ ÷(‡
+„
+
+÷ ÷(
+%0dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager|z
+
+÷ ÷(
+
+%1void"dataAccess.DataAccess#open()V*9
+
+__unknown_file (
+
+%0dataAccess.DataAccess2open()‡
+„
+
+ø ø(
+%2dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager‚ÿ
+
+ø ø(,
+%3domain.Discount"FdataAccess.DataAccess#getDiscount(Ljava/lang/String;)Ldomain/Discount;*9
+
+__unknown_file (
+
+%2dataAccess.DataAccess*6
+
+__unknown_file (
+
+deskjava.lang.String2getDiscount(Ljava/lang/String;)a
+_
+
+ø ø(-
+disdomain.Discount"__id*3
+
+__unknown_file (
+
+%3domain.Discount‡
+„
+
+ù ù(
+%4dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager~|
+
+ù ù(
+
+%5void"dataAccess.DataAccess#close()V*9
+
+__unknown_file (
+
+%4dataAccess.DataAccess2close()"&
+
+ú ú(
+
+disdomain.Discount:&
+
+ö ö((
+deskjava.lang.StringB(&
+$businessLogic.BLFacadeImplementationH

@@ -1,0 +1,82 @@
+
+=dataAccess.DataAccess#addCar(Ljava/lang/String;Ldomain/Car;)Z·
+ª/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/dataAccess/DataAccess.javaÅ Å("15*Ø
+14
+Ç Ç(6¼¹
+
+Ç Ç(6
+%1boolean"DdataAccess.DataAccess#isAdded(Ljava/lang/String;Ljava/lang/String;)Z*5
+
+__unknown_file (
+dataAccess.DataAccess*:
+
+__unknown_file (
+
+usernamejava.lang.String*4
+
+__unknown_file (
+
+%0java.lang.String2-isAdded(Ljava/lang/String;Ljava/lang/String;)*
+5
+10*°
+15
+Ç Ç(—”
+
+Ç! Ç(5
+%0java.lang.String"+domain.Car#getMatrikula()Ljava/lang/String;*1
+
+__unknown_file (
+
+kotxe
+domain.Car2getMatrikula()*
+14*%
+5
+Ï Ï("
+
+Ï Ï(
+""*³
+9
+Ê Ê(%]
+[
+
+Ê Ê(%
+dridomain.Driver"__id*1
+
+__unknown_file (
+
+%2domain.Driver½º
+
+Ë Ë(
+
+%3void"#domain.Driver#addCar(Ldomain/Car;)V*2
+
+__unknown_file (
+
+dridomain.Driver*1
+
+__unknown_file (
+
+kotxe
+domain.Car2addCar(Ldomain/Car;)*
+5*’
+10
+Ê Ê(ú÷
+
+Ê Ê($
+%2domain.Driver"BdataAccess.DataAccess#getDriver(Ljava/lang/String;)Ldomain/Driver;*5
+
+__unknown_file (
+dataAccess.DataAccess*:
+
+__unknown_file (
+
+usernamejava.lang.String2getDriver(Ljava/lang/String;)*
+9:*
+
+Å Å('
+usernamejava.lang.String:!
+
+Å( Å(1
+kotxe
+domain.CarB
+dataAccess.DataAccessHX

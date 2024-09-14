@@ -1,0 +1,100 @@
+
+XbusinessLogic.BLFacadeImplementation#getKotxeByMatrikula(Ljava/lang/String;)Ldomain/Car;Æ
+¹/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/businessLogic/BLFacadeImplementation.javaÂ Â("startingBlock*Œ
+startingBlock
+Â Â(,
+Š
+
+Á Á(
+
+%6"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*6
+
+__unknown_file (
+
+matrjava.lang.StringZ
+X
+
+Â' Â(+
+matrjava.lang.String"__annotation*"
+
+__unknown_file (
+
+%6*
+1*¶
+1
+Ã Ã(‡
+„
+
+Ã Ã(
+%0dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager|z
+
+Ã Ã(
+
+%1void"dataAccess.DataAccess#open()V*9
+
+__unknown_file (
+
+%0dataAccess.DataAccess2open()‡
+„
+
+Ä Ä(
+%2dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerˆ…
+
+Ä Ä(1
+%3
+domain.Car"IdataAccess.DataAccess#getKotxeByMatrikula(Ljava/lang/String;)Ldomain/Car;*9
+
+__unknown_file (
+
+%2dataAccess.DataAccess*6
+
+__unknown_file (
+
+matrjava.lang.String2'getKotxeByMatrikula(Ljava/lang/String;)Y
+W
+
+Ä Ä(2
+kotxe
+domain.Car"__id*.
+
+__unknown_file (
+
+%3
+domain.Car‡
+„
+
+Å Å(
+%4dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager~|
+
+Å Å(
+
+%5void"dataAccess.DataAccess#close()V*9
+
+__unknown_file (
+
+%4dataAccess.DataAccess2close()"#
+
+Æ Æ(
+
+kotxe
+domain.Car:&
+
+Â  Â(+
+matrjava.lang.StringB(&
+$businessLogic.BLFacadeImplementationH
