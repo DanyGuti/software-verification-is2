@@ -6,7 +6,7 @@ sonar-project.properties
 .project
 .settings/
 .sonar/
-
 .sonar
 .settings
-
+target
+target/
