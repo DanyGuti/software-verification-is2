@@ -12,4 +12,4 @@ CRÉDITOS-kredituak:
 ---
 Trabajo de adaptación para Ingeniería del software II
 * Daniel Gutiérrez Gómez
-* Hugo
+* Hugo Muñoz Rodríguez
