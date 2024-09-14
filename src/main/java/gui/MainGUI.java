@@ -4,7 +4,7 @@ package gui;
  * @author Software Engineering teachers
  */
 
-
+import java.until.logging.Logger.
 import javax.swing.*;
 
 import businessLogic.BLFacade;
@@ -72,7 +72,7 @@ public class MainGUI extends JFrame {
 		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Locale.setDefault(new Locale("eus"));
-				System.out.println("Locale: "+Locale.getDefault());
+
 				paintAgain();				}
 		});
 		buttonGroup.add(rdbtnNewRadioButton_1);
