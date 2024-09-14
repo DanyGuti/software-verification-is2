@@ -1,4 +1,4 @@
-package businessLogic;
+package business_logic;
 
 import java.util.Date;
 
