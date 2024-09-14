@@ -1,0 +1,115 @@
+
+XbusinessLogic.BLFacadeImplementation#isRegistered(Ljava/lang/String;Ljava/lang/String;)Z∆
+π/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/businessLogic/BLFacadeImplementation.javaî î("startingBlock*¸
+startingBlock
+î î(8ç
+ä
+
+ì ì(
+
+%6"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*6
+
+__unknown_file (
+
+erabjava.lang.StringZ
+X
+
+î$ î((
+erabjava.lang.String"__annotation*"
+
+__unknown_file (
+
+%6è
+å
+
+ì ì(
+
+%7"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*8
+
+__unknown_file (
+
+passwdjava.lang.String\
+Z
+
+î1 î(7
+passwdjava.lang.String"__annotation*"
+
+__unknown_file (
+
+%7*
+1*é
+1
+ï ï(á
+Ñ
+
+ï ï(
+%0dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager|z
+
+ï ï(
+
+%1void"dataAccess.DataAccess#open()V*9
+
+__unknown_file (
+
+%0dataAccess.DataAccess2open()á
+Ñ
+
+ñ ñ( 
+%2dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager «
+
+ñ ñ(;
+%3boolean"IdataAccess.DataAccess#isRegistered(Ljava/lang/String;Ljava/lang/String;)Z*9
+
+__unknown_file (
+
+%2dataAccess.DataAccess*6
+
+__unknown_file (
+
+erabjava.lang.String*8
+
+__unknown_file (
+
+passwdjava.lang.String22isRegistered(Ljava/lang/String;Ljava/lang/String;)á
+Ñ
+
+ó ó(
+%4dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager~|
+
+ó ó(
+
+%5void"dataAccess.DataAccess#close()V*9
+
+__unknown_file (
+
+%4dataAccess.DataAccess2close()"
+
+ò ò(
+"":&
+
+î î()
+erabjava.lang.String:(
+
+î* î(7
+passwdjava.lang.StringB(&
+$businessLogic.BLFacadeImplementationHX

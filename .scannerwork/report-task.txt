@@ -1,0 +1,7 @@
+organization=project-verification-is2
+projectKey=project-verification-is2_softwareverification
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.56591
+dashboardUrl=https://sonarcloud.io/dashboard?id=project-verification-is2_softwareverification
+ceTaskId=AZHvlEASCH4e2HRCbM3T
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZHvlEASCH4e2HRCbM3T

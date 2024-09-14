@@ -1,0 +1,115 @@
+
+WbusinessLogic.BLFacadeImplementation#addTraveler(Ljava/lang/String;Ljava/lang/String;)ZÆ
+¹/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/businessLogic/BLFacadeImplementation.javaÄ Ä("startingBlock*ˆ
+startingBlock
+Ä Ä(=‘
+Ž
+
+Ã Ã(
+
+%6"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*:
+
+__unknown_file (
+
+usernamejava.lang.String^
+\
+
+Ä# Ä(+
+usernamejava.lang.String"__annotation*"
+
+__unknown_file (
+
+%6‘
+Ž
+
+Ã Ã(
+
+%7"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*:
+
+__unknown_file (
+
+passwordjava.lang.String^
+\
+
+Ä4 Ä(<
+passwordjava.lang.String"__annotation*"
+
+__unknown_file (
+
+%7*
+1*’
+1
+Å Å(‡
+„
+
+Å Å(
+%0dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager|z
+
+Å Å(
+
+%1void"dataAccess.DataAccess#open()V*9
+
+__unknown_file (
+
+%0dataAccess.DataAccess2open()‡
+„
+
+Æ Æ(
+%2dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerÎË
+
+Æ Æ(:
+%3boolean"HdataAccess.DataAccess#addTraveler(Ljava/lang/String;Ljava/lang/String;)Z*9
+
+__unknown_file (
+
+%2dataAccess.DataAccess*:
+
+__unknown_file (
+
+usernamejava.lang.String*:
+
+__unknown_file (
+
+passwordjava.lang.String21addTraveler(Ljava/lang/String;Ljava/lang/String;)‡
+„
+
+Ç Ç(
+%4dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager~|
+
+Ç Ç(
+
+%5void"dataAccess.DataAccess#close()V*9
+
+__unknown_file (
+
+%4dataAccess.DataAccess2close()"
+
+È È(
+"":*
+
+Ä Ä(,
+usernamejava.lang.String:*
+
+Ä- Ä(<
+passwordjava.lang.StringB(&
+$businessLogic.BLFacadeImplementationHX

@@ -1,0 +1,5 @@
+businessLogic.BLFacadeImplementation#getKotxeByMatrikula(Ljava/lang/String;)Ldomain/Car;
+==
+close dataAccess.DataAccess#close()V
+open dataAccess.DataAccess#open()V
+getKotxeByMatrikula dataAccess.DataAccess#getKotxeByMatrikula(Ljava/lang/String;)Ldomain/Car;

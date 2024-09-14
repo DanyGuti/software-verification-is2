@@ -1,0 +1,6 @@
+testOperations.TestBusinessLogic#<init>()V
+testOperations.TestDataAccess#instance-init#
+testOperations.TestDataAccess#<init>()V
+==
+println java.io.PrintStream#println(Ljava/lang/String;)V
+close testOperations.TestDataAccess#close()V

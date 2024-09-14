@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="GitSelectRepositoryPage.lastRepository" value="/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/.git"/>
+	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://github.com/DanyGuti/software-verification-is2.git"/>
+	</list>
+	<list key="EGit.KnownHosts">
+		<item value="bitbucket.org"/>
+		<item value="git.eclipse.org"/>
+		<item value="github.com"/>
+	</list>
+	<section name="SmartImportGitWizard.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="184"/>
+		<item key="DIALOG_Y_ORIGIN" value="61"/>
+		<item key="DIALOG_WIDTH" value="1006"/>
+		<item key="DIALOG_HEIGHT" value="550"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+</section>

@@ -1,0 +1,65 @@
+
+FbusinessLogic.BLFacadeImplementation#getAllDiscounts()Ljava/util/List;Æ
+¹/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/businessLogic/BLFacadeImplementation.javaà à(&"1*â
+1
+á á(‡
+„
+
+á á(
+%0dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager|z
+
+á á(
+
+%1void"dataAccess.DataAccess#open()V*9
+
+__unknown_file (
+
+%0dataAccess.DataAccess2open()‡
+„
+
+â â( 
+%2dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager¬©
+
+â â(2
+%3java.util.List"7dataAccess.DataAccess#getAllDiscounts()Ljava/util/List;*9
+
+__unknown_file (
+
+%2dataAccess.DataAccess2getAllDiscounts()_
+]
+
+â â(3
+disjava.util.List"__id*2
+
+__unknown_file (
+
+%3java.util.List‡
+„
+
+ã ã(
+%4dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager~|
+
+ã ã(
+
+%5void"dataAccess.DataAccess#close()V*9
+
+__unknown_file (
+
+%4dataAccess.DataAccess2close()"%
+
+ä ä(
+
+disjava.util.ListB(&
+$businessLogic.BLFacadeImplementationH

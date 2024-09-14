@@ -1,0 +1,62 @@
+
+4businessLogic.BLFacadeImplementation#deleteAlert(I)ZÆ
+¹/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/businessLogic/BLFacadeImplementation.java¼ ¼("1*ø
+1
+½ ½(‡
+„
+
+½ ½(
+%0dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager|z
+
+½ ½(
+
+%1void"dataAccess.DataAccess#open()V*9
+
+__unknown_file (
+
+%0dataAccess.DataAccess2open()‡
+„
+
+¾ ¾(
+%2dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager´±
+
+¾ ¾(2
+%3boolean"%dataAccess.DataAccess#deleteAlert(I)Z*9
+
+__unknown_file (
+
+%2dataAccess.DataAccess*"
+
+__unknown_file (
+""2deleteAlert(I)‡
+„
+
+¿ ¿(
+%4dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager~|
+
+¿ ¿(
+
+%5void"dataAccess.DataAccess#close()V*9
+
+__unknown_file (
+
+%4dataAccess.DataAccess2close()"
+
+À À(
+"": 
+
+__unknown_file (
+""B(&
+$businessLogic.BLFacadeImplementationHX

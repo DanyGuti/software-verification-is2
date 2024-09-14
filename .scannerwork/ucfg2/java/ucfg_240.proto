@@ -1,0 +1,119 @@
+
+LbusinessLogic.BLFacadeImplementation#addCar(Ljava/lang/String;Ldomain/Car;)ZÆ
+¹/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/businessLogic/BLFacadeImplementation.java² ²("startingBlock*ö
+startingBlock
+² ²(2‘
+Ž
+
+± ±(
+
+%6"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*:
+
+__unknown_file (
+
+usernamejava.lang.String^
+\
+
+² ²(&
+usernamejava.lang.String"__annotation*"
+
+__unknown_file (
+
+%6ˆ
+…
+
+± ±(
+
+%7"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*1
+
+__unknown_file (
+
+kotxe
+domain.CarU
+S
+
+², ²(1
+kotxe
+domain.Car"__annotation*"
+
+__unknown_file (
+
+%7*
+1*ó
+1
+³ ³(‡
+„
+
+³ ³(
+%0dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager|z
+
+³ ³(
+
+%1void"dataAccess.DataAccess#open()V*9
+
+__unknown_file (
+
+%0dataAccess.DataAccess2open()‡
+„
+
+´ ´(
+%2dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager¯¬
+
+´ ´(2
+%3boolean"=dataAccess.DataAccess#addCar(Ljava/lang/String;Ldomain/Car;)Z*9
+
+__unknown_file (
+
+%2dataAccess.DataAccess*:
+
+__unknown_file (
+
+usernamejava.lang.String*1
+
+__unknown_file (
+
+kotxe
+domain.Car2&addCar(Ljava/lang/String;Ldomain/Car;)‡
+„
+
+µ µ(
+%4dataAccess.DataAccess"__id*S
+
+__unknown_file (7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager~|
+
+µ µ(
+
+%5void"dataAccess.DataAccess#close()V*9
+
+__unknown_file (
+
+%4dataAccess.DataAccess2close()"
+
+¶ ¶(
+"":*
+
+² ²('
+usernamejava.lang.String:!
+
+²( ²(1
+kotxe
+domain.CarB(&
+$businessLogic.BLFacadeImplementationHX

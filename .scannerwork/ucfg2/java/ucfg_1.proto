@@ -1,0 +1,1049 @@
+
+%dataAccess.DataAccess#initializeDB()Vµ
+™/Users/Guty/Library/CloudStorage/OneDrive-Personal/Escuela/7mo_Sem_ITC/IngenieriaSoftwareII/repoProject/software-verification-is2/src/main/java/dataAccess/DataAccess.javaF F("99*≠
+69i i(ñì
+i i(+
+%31java.util.Date",java.util.Calendar#getTime()Ljava/util/Date;*7
+
+__unknown_file (
+
+caljava.util.Calendar2	getTime()*
+67*ñ
+70f f(-O
+M
+f f(-
+date3java.util.Date"__id*"
+
+__unknown_file (
+""B
+@
+h h(
+
+%29int"__id*"
+
+__unknown_file (
+""ÍÁ
+h h($
+%30void"java.util.Calendar#set(III)V*7
+
+__unknown_file (
+
+caljava.util.Calendar*!
+
+__unknown_file (2Ë*(
+
+__unknown_file (
+
+
+%29int* 
+
+__unknown_file (22set(III)*
+69*≠
+72f f(ñì
+f f(+
+%28java.util.Date",java.util.Calendar#getTime()Ljava/util/Date;*7
+
+__unknown_file (
+
+caljava.util.Calendar2	getTime()*
+70*ñ
+73c c(-O
+M
+c c(-
+date2java.util.Date"__id*"
+
+__unknown_file (
+""B
+@
+e e(
+
+%26int"__id*"
+
+__unknown_file (
+""ÍÁ
+e e("
+%27void"java.util.Calendar#set(III)V*7
+
+__unknown_file (
+
+caljava.util.Calendar*!
+
+__unknown_file (2Ë*(
+
+__unknown_file (
+
+
+%26int* 
+
+__unknown_file (2
+2set(III)*
+72*y
+30
+è è(9a
+_
+
+è è(9
+m7domain.Movement"__id*4
+
+__unknown_file (
+
+%54domain.Movement*
+23*ƒ
+31
+é é(6a
+_
+
+é é(6
+m6domain.Movement"__id*4
+
+__unknown_file (
+
+%52domain.Movement75
+
+è è(
+%54domain.Movement"domain.Movementè
+å
+
+è è(8
+%55"9domain.Movement#<init>(Ldomain/User;Ljava/lang/String;D)V*4
+
+__unknown_file (
+
+%54domain.Movement*:
+
+__unknown_file (
+
+	traveler1domain.Traveler*'
+
+__unknown_file (	
+Deposit*!
+
+__unknown_file (2®*
+30*≠
+75c c(ñì
+c c(+
+%25java.util.Date",java.util.Calendar#getTime()Ljava/util/Date;*7
+
+__unknown_file (
+
+caljava.util.Calendar2	getTime()*
+73*ø
+32
+ç ç(:a
+_
+
+ç ç(:
+m5domain.Movement"__id*4
+
+__unknown_file (
+
+%50domain.Movement75
+
+é é(
+%52domain.Movement"domain.Movementä
+á
+
+é é(5
+%53"9domain.Movement#<init>(Ldomain/User;Ljava/lang/String;D)V*4
+
+__unknown_file (
+
+%52domain.Movement*6
+
+__unknown_file (
+
+driver1domain.Driver*'
+
+__unknown_file (	
+Deposit* 
+
+__unknown_file (2*
+31*ñ
+76` `(-O
+M
+` `(-
+date1java.util.Date"__id*"
+
+__unknown_file (
+""B
+@
+b b(
+
+%23int"__id*"
+
+__unknown_file (
+""ÍÁ
+b b("
+%24void"java.util.Calendar#set(III)V*7
+
+__unknown_file (
+
+caljava.util.Calendar*!
+
+__unknown_file (2Ë*(
+
+__unknown_file (
+
+
+%23int* 
+
+__unknown_file (22set(III)*
+75*∆
+33
+å å(:a
+_
+
+å å(:
+m4domain.Movement"__id*4
+
+__unknown_file (
+
+%48domain.Movement75
+
+ç ç(
+%50domain.Movement"domain.Movementë
+é
+
+ç ç(9
+%51"9domain.Movement#<init>(Ldomain/User;Ljava/lang/String;D)V*4
+
+__unknown_file (
+
+%50domain.Movement*:
+
+__unknown_file (
+
+	traveler1domain.Traveler**
+
+__unknown_file (
+
+BookFreeze* 
+
+__unknown_file (2*
+32*≠
+78` `(ñì
+` `(+
+%22java.util.Date",java.util.Calendar#getTime()Ljava/util/Date;*7
+
+__unknown_file (
+
+caljava.util.Calendar2	getTime()*
+76*∆
+34
+ã ã(:a
+_
+
+ã ã(:
+m3domain.Movement"__id*4
+
+__unknown_file (
+
+%46domain.Movement75
+
+å å(
+%48domain.Movement"domain.Movementë
+é
+
+å å(9
+%49"9domain.Movement#<init>(Ldomain/User;Ljava/lang/String;D)V*4
+
+__unknown_file (
+
+%48domain.Movement*:
+
+__unknown_file (
+
+	traveler2domain.Traveler**
+
+__unknown_file (
+
+BookFreeze* 
+
+__unknown_file (2*
+33*≠
+79^ ^()f
+d
+^ ^()
+caljava.util.Calendar"__id*7
+
+__unknown_file (
+
+%19java.util.CalendarB
+@
+_ _(
+
+%20int"__id*"
+
+__unknown_file (
+""ÍÁ
+_ _("
+%21void"java.util.Calendar#set(III)V*7
+
+__unknown_file (
+
+caljava.util.Calendar*!
+
+__unknown_file (2Ë*(
+
+__unknown_file (
+
+
+%20int* 
+
+__unknown_file (22set(III)*
+78*∆
+35
+ä ä(;a
+_
+
+ä ä(;
+m2domain.Movement"__id*4
+
+__unknown_file (
+
+%44domain.Movement75
+
+ã ã(
+%46domain.Movement"domain.Movementë
+é
+
+ã ã(9
+%47"9domain.Movement#<init>(Ldomain/User;Ljava/lang/String;D)V*4
+
+__unknown_file (
+
+%46domain.Movement*:
+
+__unknown_file (
+
+	traveler1domain.Traveler**
+
+__unknown_file (
+
+BookFreeze* 
+
+__unknown_file (2*
+34*∆
+36
+â â(;a
+_
+
+â â(;
+m1domain.Movement"__id*4
+
+__unknown_file (
+
+%42domain.Movement75
+
+ä ä(
+%44domain.Movement"domain.Movementë
+é
+
+ä ä(:
+%45"9domain.Movement#<init>(Ldomain/User;Ljava/lang/String;D)V*4
+
+__unknown_file (
+
+%44domain.Movement*:
+
+__unknown_file (
+
+	traveler1domain.Traveler**
+
+__unknown_file (
+
+BookFreeze* 
+
+__unknown_file (2(*
+35*„
+37
+â â('75
+
+â â(
+%42domain.Movement"domain.Movementë
+é
+
+â â(:
+%43"9domain.Movement#<init>(Ldomain/User;Ljava/lang/String;D)V*4
+
+__unknown_file (
+
+%42domain.Movement*:
+
+__unknown_file (
+
+	traveler1domain.Traveler**
+
+__unknown_file (
+
+BookFreeze* 
+
+__unknown_file (2*
+36*©
+80^ ^(í
+è
+^ ^((
+%19java.util.Calendar"4java.util.Calendar#getInstance()Ljava/util/Calendar;*2
+
+__unknown_file ("
+java.util.Calendar*
+79*∏
+83Z Z(°û
+Z Z(
+%18void"domain.User#setBalkop(I)V*:
+
+__unknown_file (
+
+	traveler2domain.Traveler* 
+
+__unknown_file (22setBalkop(I)*
+80*®
+84X X(5f
+d
+X X(5
+	traveler2domain.Traveler"__id*4
+
+__unknown_file (
+
+%15domain.Traveler©¶
+Y Y(
+%17void"domain.User#setBalorazioa(D)V*:
+
+__unknown_file (
+
+	traveler2domain.Traveler* 
+
+__unknown_file (22setBalorazioa(D)*
+83*£
+85X% X(,53
+X X($
+%15domain.Traveler"domain.Traveler’
+“
+X X(4
+%16"=domain.Traveler#<init>(Ljava/lang/String;Ljava/lang/String;)V*4
+
+__unknown_file (
+
+%15domain.Traveler*%
+
+__unknown_file (	
+Luken*#
+
+__unknown_file (
+abc*
+84*∏
+86W W(°û
+W W(
+%14void"domain.User#setBalkop(I)V*:
+
+__unknown_file (
+
+	traveler1domain.Traveler* 
+
+__unknown_file (22setBalkop(I)*
+85*¿
+87V V(©¶
+V V(
+%13void"domain.User#setBalorazioa(D)V*:
+
+__unknown_file (
+
+	traveler1domain.Traveler* 
+
+__unknown_file (22setBalorazioa(D)*
+86*∂
+88U U(üú
+U U(
+%12void"domain.User#setMoney(D)V*:
+
+__unknown_file (
+
+	traveler1domain.Traveler* 
+
+__unknown_file (2d2setMoney(D)*
+87*µ
+89S S(4e
+c
+S S(4
+	traveler1domain.Traveler"__id*3
+
+__unknown_file (
+
+%9domain.Traveler∑¥
+T T(%
+%11void"$domain.User#setIzoztatutakoDirua(D)V*:
+
+__unknown_file (
+
+	traveler1domain.Traveler* 
+
+__unknown_file (2D2setIzoztatutakoDirua(D)*
+88*†
+90S% S(+42
+S S($
+%9domain.Traveler"domain.Traveler”
+–
+S S(3
+%10"=domain.Traveler#<init>(Ljava/lang/String;Ljava/lang/String;)V*3
+
+__unknown_file (
+
+%9domain.Traveler*$
+
+__unknown_file (
+Unax*#
+
+__unknown_file (
+789*
+89*≥
+93O O(
+úô
+O O(
+
+%8void"domain.User#setBalkop(I)V*6
+
+__unknown_file (
+
+driver2domain.Driver* 
+
+__unknown_file (22setBalkop(I)*
+90*ú
+94M M(._
+]
+M M(.
+driver2domain.Driver"__id*1
+
+__unknown_file (
+
+%5domain.Driver§°
+N N(
+
+%7void"domain.User#setBalorazioa(D)V*6
+
+__unknown_file (
+
+driver2domain.Driver* 
+
+__unknown_file (2
+2setBalorazioa(D)*
+93*ó
+95M M(%0.
+M M(
+%5domain.Driver"domain.DriverŒ
+À
+M M(-
+%6";domain.Driver#<init>(Ljava/lang/String;Ljava/lang/String;)V*1
+
+__unknown_file (
+
+%5domain.Driver*$
+
+__unknown_file (
+Zuri*#
+
+__unknown_file (
+456*
+94*≥
+96L L(
+úô
+L L(
+
+%4void"domain.User#setBalkop(I)V*6
+
+__unknown_file (
+
+driver1domain.Driver* 
+
+__unknown_file (22setBalkop(I)*
+95*ª
+97K K(
+§°
+K K(
+
+%3void"domain.User#setBalorazioa(D)V*6
+
+__unknown_file (
+
+driver1domain.Driver* 
+
+__unknown_file (22setBalorazioa(D)*
+96*í
+98I I(/_
+]
+I I(/
+driver1domain.Driver"__id*1
+
+__unknown_file (
+
+%0domain.Driveröó
+J J(
+
+%2void"domain.User#setMoney(D)V*6
+
+__unknown_file (
+
+driver1domain.Driver* 
+
+__unknown_file (22setMoney(D)*
+97*ß
+54t t(1êç
+u u()
+%41"/domain.Driver#getCreatedRides()Ljava/util/List;*6
+
+__unknown_file (
+
+driver2domain.Driver2getCreatedRides()*
+37*ò
+99I I(&0.
+I I(
+%0domain.Driver"domain.Driverœ
+Ã
+I I(.
+%1";domain.Driver#<init>(Ljava/lang/String;Ljava/lang/String;)V*1
+
+__unknown_file (
+
+%0domain.Driver*%
+
+__unknown_file (	
+Urtzi*#
+
+__unknown_file (
+123*
+98*◊
+12
+• •(
+øº
+
+• •(
+%69void"#domain.Driver#addCar(Ldomain/Car;)V*6
+
+__unknown_file (
+
+driver2domain.Driver*.
+
+__unknown_file (
+
+c3
+domain.Car2addCar(Ldomain/Car;)*
+8*ß
+56s s(1êç
+t t()
+%40"/domain.Driver#getCreatedRides()Ljava/util/List;*6
+
+__unknown_file (
+
+driver1domain.Driver2getCreatedRides()*
+54*ÿ
+13
+§ §(
+øº
+
+§ §(
+%68void"#domain.Driver#addCar(Ldomain/Car;)V*6
+
+__unknown_file (
+
+driver1domain.Driver*.
+
+__unknown_file (
+
+c2
+domain.Car2addCar(Ldomain/Car;)*
+12*±
+14
+¢ ¢(*W
+U
+
+¢ ¢(*
+c3
+domain.Car"__id*/
+
+__unknown_file (
+
+%65
+domain.Carøº
+
+£ £(
+%67void"#domain.Driver#addCar(Ldomain/Car;)V*6
+
+__unknown_file (
+
+driver1domain.Driver*.
+
+__unknown_file (
+
+c1
+domain.Car2addCar(Ldomain/Car;)*
+13*ß
+58r r(1êç
+s s()
+%39"/domain.Driver#getCreatedRides()Ljava/util/List;*6
+
+__unknown_file (
+
+driver1domain.Driver2getCreatedRides()*
+56*î
+15
+° °(-W
+U
+
+° °(-
+c2
+domain.Car"__id*/
+
+__unknown_file (
+
+%63
+domain.Car-+
+
+¢ ¢(
+%65
+domain.Car"
+domain.CarÛ
+
+
+¢ ¢()
+%66"9domain.Car#<init>(Ljava/lang/String;Ljava/lang/String;I)V*/
+
+__unknown_file (
+
+%65
+domain.Car*'
+
+__unknown_file (	
+9101GHI*$
+
+__unknown_file (
+Audi* 
+
+__unknown_file (2*
+14*ó
+16
+† †(-W
+U
+
+† †(-
+c1
+domain.Car"__id*/
+
+__unknown_file (
+
+%61
+domain.Car-+
+
+° °(
+%63
+domain.Car"
+domain.Carˆ
+Û
+
+° °(,
+%64"9domain.Car#<init>(Ljava/lang/String;Ljava/lang/String;I)V*/
+
+__unknown_file (
+
+%63
+domain.Car*'
+
+__unknown_file (	
+5678DEF*'
+
+__unknown_file (	
+Citroen* 
+
+__unknown_file (2*
+15*æ
+17
+† †(-+
+
+† †(
+%61
+domain.Car"
+domain.Carˆ
+Û
+
+† †(,
+%62"9domain.Car#<init>(Ljava/lang/String;Ljava/lang/String;I)V*/
+
+__unknown_file (
+
+%61
+domain.Car*'
+
+__unknown_file (	
+1234ABC*'
+
+__unknown_file (	
+Renault* 
+
+__unknown_file (2*
+16*‘
+19
+ù ù(ª∏
+
+ù ù(!
+%60")domain.Traveler#addBookedRide(LBooking;)V*:
+
+__unknown_file (
+
+	traveler1domain.Traveler*"
+
+__unknown_file (
+""2addBookedRide(LBooking;)*
+17*(
+0 "!
+
+∑ ∑(
+implicit return*¬
+4
+± ±(	T
+R
+
+± ±(
+%72java.io.PrintStream"__id*"
+
+__unknown_file (
+""’“
+
+± ±('
+%73void"0java.io.PrintStream#println(Ljava/lang/String;)V*8
+
+__unknown_file (
+
+%72java.io.PrintStream*.
+
+__unknown_file (
+Db initialized2println(Ljava/lang/String;)*
+0*x
+7
+≠ ≠(3b
+`
+
+≠ ≠(3
+disdomain.Discount"__id*4
+
+__unknown_file (
+
+%70domain.Discount*
+4*∏
+8
+≠ ≠(&75
+
+≠ ≠(
+%70domain.Discount"domain.DiscountË
+Â
+
+≠ ≠(2
+%71"-domain.Discount#<init>(Ljava/lang/String;DZ)V*4
+
+__unknown_file (
+
+%70domain.Discount*%
+
+__unknown_file (	
+Uda24*"
+
+__unknown_file (
+""* 
+
+__unknown_file (2*
+7*ß
+60q q(1êç
+r r()
+%38"/domain.Driver#getCreatedRides()Ljava/util/List;*6
+
+__unknown_file (
+
+driver1domain.Driver2getCreatedRides()*
+58*ß
+62q q(êç
+q q()
+%37"/domain.Driver#getCreatedRides()Ljava/util/List;*6
+
+__unknown_file (
+
+driver1domain.Driver2getCreatedRides()*
+60* 
+63o o(
+≥∞
+o o(9
+%36"Sdomain.Driver#addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)LRide;*6
+
+__unknown_file (
+
+driver2domain.Driver*(
+
+__unknown_file (
+
+Donostia**
+
+__unknown_file (
+
+Hondarribi*5
+
+__unknown_file (
+
+date1java.util.Date* 
+
+__unknown_file (2* 
+
+__unknown_file (22?addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)*
+62*‘
+20
+ú ú(ª∏
+
+ú ú(!
+%59")domain.Traveler#addBookedRide(LBooking;)V*:
+
+__unknown_file (
+
+	traveler1domain.Traveler*"
+
+__unknown_file (
+""2addBookedRide(LBooking;)*
+19*≈
+64n n(
+Æ´
+n n(7
+%35"Sdomain.Driver#addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)LRide;*6
+
+__unknown_file (
+
+driver1domain.Driver*)
+
+__unknown_file (
+	Barcelona*&
+
+__unknown_file (
+
+Madrid*5
+
+__unknown_file (
+
+date4java.util.Date*
+
+__unknown_file (2 * 
+
+__unknown_file (2
+2?addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)*
+63*‘
+21
+õ õ(ª∏
+
+õ õ(!
+%58")domain.Traveler#addBookedRide(LBooking;)V*:
+
+__unknown_file (
+
+	traveler2domain.Traveler*"
+
+__unknown_file (
+""2addBookedRide(LBooking;)*
+20*∆
+65m m(
+Ø¨
+m m(5
+%34"Sdomain.Driver#addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)LRide;*6
+
+__unknown_file (
+
+driver1domain.Driver*&
+
+__unknown_file (
+
+Madrid*(
+
+__unknown_file (
+
+Donostia*5
+
+__unknown_file (
+
+date3java.util.Date* 
+
+__unknown_file (2* 
+
+__unknown_file (22?addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)*
+64*‘
+22
+ö ö(ª∏
+
+ö ö(!
+%57")domain.Traveler#addBookedRide(LBooking;)V*:
+
+__unknown_file (
+
+	traveler1domain.Traveler*"
+
+__unknown_file (
+""2addBookedRide(LBooking;)*
+21*ƒ
+66l l(
+≠™
+l l(3
+%33"Sdomain.Driver#addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)LRide;*6
+
+__unknown_file (
+
+driver1domain.Driver*$
+
+__unknown_file (
+Irun*(
+
+__unknown_file (
+
+Donostia*5
+
+__unknown_file (
+
+date2java.util.Date* 
+
+__unknown_file (2* 
+
+__unknown_file (22?addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)*
+65*‘
+23
+ô ô(ª∏
+
+ô ô(!
+%56")domain.Traveler#addBookedRide(LBooking;)V*:
+
+__unknown_file (
+
+	traveler1domain.Traveler*"
+
+__unknown_file (
+""2addBookedRide(LBooking;)*
+22*ó
+67i i(-O
+M
+i i(-
+date4java.util.Date"__id*"
+
+__unknown_file (
+""Ø¨
+k k(6
+%32"Sdomain.Driver#addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)LRide;*6
+
+__unknown_file (
+
+driver1domain.Driver*(
+
+__unknown_file (
+
+Donostia*&
+
+__unknown_file (
+
+Madrid*5
+
+__unknown_file (
+
+date2java.util.Date* 
+
+__unknown_file (2* 
+
+__unknown_file (22?addRide(Ljava/lang/String;Ljava/lang/String;Ljava/util/Date;IF)*
+66B
+dataAccess.DataAccessH
