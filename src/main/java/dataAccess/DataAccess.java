@@ -31,6 +31,7 @@ public class DataAccess {
 	
 	private String adminPass="admin";
 	public static final String CONST_MAD = "Madrid";
+	public static final String CONST_DON = "Donostia";
 
 	public DataAccess() {
 		if (c.isDatabaseInitialized()) {
@@ -105,7 +106,7 @@ public class DataAccess {
 			cal.set(2024, Calendar.APRIL, 20);
 			Date date4 = UtilDate.trim(cal.getTime());
 
-			driver1.addRide("Donostia", DataAccess.CONST_MAD, date2, 5, 20); //ride1
+			driver1.addRide(DataAccess.CONST_DON, DataAccess.CONST_MAD, date2, 5, 20); //ride1
 			driver1.addRide("Irun", "Donostia", date2, 5, 2); //ride2
 			driver1.addRide(DataAccess.CONST_MAD, "Donostia", date3, 5, 5); //ride3
 			driver1.addRide("Barcelona", DataAccess.CONST_MAD, date4, 0, 10); //ride4
