@@ -4,7 +4,7 @@ package gui;
  * @author Software Engineering teachers
  */
 
-import java.until.logging.Logger.
+import java.util.logging.Logger.
 import javax.swing.*;
 
 import businessLogic.BLFacade;
