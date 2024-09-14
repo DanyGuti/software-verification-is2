@@ -90,7 +90,7 @@ public class LoginGUI extends JFrame {
 		});
 	}
 
-	private void jButtonClose_actionPerformed(ActionEvent e) {
+	private void jButtonCloseActionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
 }
