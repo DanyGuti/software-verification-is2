@@ -7,10 +7,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import domain.Alert;
@@ -21,6 +23,8 @@ import domain.Movement;
 import domain.Ride;
 import domain.Traveler;
 import domain.User;
+import exceptions.RideAlreadyExistException;
+import exceptions.RideMustBeLaterThanTodayException;
 
 
 public class TestDataAccess {
@@ -209,11 +213,13 @@ public class TestDataAccess {
 			return false;
 		}
 		
-		public Booking createBooking(Driver d, Ride ride, Traveler traveler, int seats) {
+		public Booking createBooking(Driver d, Ride ride, Traveler traveler, int seats, int money, int frozenMoney) {
 			Booking booking = null;
 			db.getTransaction().begin();
 			try {
 				Driver dr = db.find(Driver.class, d.getUsername());
+				Traveler travF = db.find(Traveler.class, traveler.getUsername());
+				travF.setMoney(money);
 				List<Ride> rideL = dr.getCreatedRides();
 				Ride rideF = db.find(Ride.class, ride);
 				// Check if rideF is not null before proceeding
@@ -232,7 +238,6 @@ public class TestDataAccess {
 				    System.out.println("Ride not found in the database.");
 				}
 				System.out.println(rideF);
-				Traveler travF = db.find(Traveler.class, traveler.getUsername());
 				booking = new Booking(rideF, travF, seats);
 				booking.setTraveler(travF);
 				
@@ -240,8 +245,8 @@ public class TestDataAccess {
 				
 				travF.addBookedRide(booking);
 				
-				travF.setMoney(100);
-				travF.setIzoztatutakoDirua(10);
+				travF.setMoney(money);
+				travF.setIzoztatutakoDirua(frozenMoney);
 				rideF.setnPlaces(rideF.getnPlaces() - seats);
 				
 				db.merge(travF);
@@ -449,8 +454,6 @@ public class TestDataAccess {
 		public Booking getBookingByRide(Driver d, Ride rd) {
 			Driver dr = db.find(Driver.class, d);
 			List<Ride>rides = dr.getCreatedRides();
-			System.out.println(rides.get(0).getBookings());
-			System.out.println(rides.get(1).getBookings());
 			Booking booking = null;
 			
 			for(Ride r: rides) {
@@ -493,7 +496,7 @@ public class TestDataAccess {
 		        }
 
 		        // Commit the transaction
-		        db.getTransaction().commit(); 
+		        db.getTransaction().commit();
 
 		        System.out.println("Successfully deleted all rides.");
 
@@ -501,7 +504,147 @@ public class TestDataAccess {
 		        e.printStackTrace();
 		    }
 		}
-	    public void createAlert(String username, String from, String to, Date date, boolean active) {
+		
+		public List<Alert> getAlertsByUser (User username) {
+			try {
+				db.getTransaction().begin();
+
+				TypedQuery<Alert> query = db.createQuery("SELECT a FROM Alert a WHERE a.traveler.username = :username",
+						Alert.class);
+				query.setParameter("username", username);
+				List<Alert> alerts = query.getResultList();
+				db.getTransaction().commit();
+
+				return alerts;
+			} catch (Exception e) {
+				e.printStackTrace();
+				db.getTransaction().rollback();
+				return null;
+			}
+		}
+		public User createAdmin (String us, String passwd) {
+			User adm = null;
+			db.getTransaction().begin();
+			try {
+				adm = new User(us, passwd, "Admin");
+				db.persist(adm);
+				db.getTransaction().commit();
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+			return adm;
+		}
+		public User getUser(String us) {
+		    TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
+		    query.setParameter("username", us);
+		    
+		    try {
+		    	System.out.println(query.getSingleResult());
+		        return query.getSingleResult();
+		    } catch (Exception e) {
+		        return null;
+		    }
+		}
+		public void deleteUser (String us) {
+			TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
+		    query.setParameter("username", us);
+		    
+		    try {
+		        User user = query.getSingleResult();  // Retrieve the user
+		        db.getTransaction().begin();  // Begin the transaction
+		        db.remove(user);  // Remove the user from the database
+		        db.getTransaction().commit();  // Commit the transaction		        
+		    } catch (Exception e) {
+		    	e.printStackTrace();
+		    }
+		}
+		
+		public Booking bookRideBlackBox (Driver d, Ride ride, Traveler traveler, int seats, int money, int frozenMoney) {
+			Booking booking = null;
+			db.getTransaction().begin();
+			try {
+				Driver dr = db.find(Driver.class, d.getUsername());
+				Traveler travF = db.find(Traveler.class, traveler.getUsername());
+				if (ride.getnPlaces() < seats) {
+					return null;
+				}
+
+				double ridePriceDesk = (ride.getPrice()) * seats;
+				double availableBalance = traveler.getMoney();
+				if (availableBalance < ridePriceDesk) {
+					return null;
+				}
+				List<Ride> rideL = dr.getCreatedRides();
+				Ride rideF = db.find(Ride.class, ride);
+				// Check if rideF is not null before proceeding
+				if (rideF != null) {
+				    // Iterate through the list of created rides
+				    for (Ride r : rideL) {
+				        // Check if the ride from the list matches the ride from the database
+				        if (r.equals(rideF)) { // Assuming Ride class implements equals() correctly
+				            // Perform your desired action when a match is found
+				            System.out.println("Matched Ride: " + r);
+				            // You can also break if you only need the first match
+				            break;
+				        }
+				    }
+				} else {
+				    System.out.println("Ride not found in the database.");
+				}
+				System.out.println(rideF);
+				booking = new Booking(rideF, travF, seats);
+				booking.setTraveler(travF);
+				
+				booking.setStatus("Accepted");
+				
+				travF.addBookedRide(booking);
+				
+				travF.setMoney(money);
+				travF.setIzoztatutakoDirua(frozenMoney);
+				rideF.setnPlaces(rideF.getnPlaces() - seats);
+				
+				db.merge(travF);
+				db.merge(rideF);
+				db.persist(booking);
+				db.getTransaction().commit();
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+			return booking;
+		}
+		public Ride createRideBlackBox(String from, String to, Date date, int nPlaces, float price, String driverName)
+				throws RideAlreadyExistException, RideMustBeLaterThanTodayException {
+			System.out.println(
+					">> DataAccess: createRide=> from= " + from + " to= " + to + " driver=" + driverName + " date " + date);
+			if (driverName==null) return null;
+			try {
+				if (new Date().compareTo(date) > 0) {
+					System.out.println("ppppp");
+					throw new RideMustBeLaterThanTodayException(
+							ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
+				}
+
+				db.getTransaction().begin();
+				Driver driver = db.find(Driver.class, driverName);
+				if (driver.doesRideExists(from, to, date)) {
+					db.getTransaction().commit();
+					throw new RideAlreadyExistException(
+							ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+				}
+				Ride ride = driver.addRide(from, to, date, nPlaces, price);
+				// next instruction can be obviated
+				db.persist(driver);
+				db.getTransaction().commit();
+
+				return ride;
+			} catch (NullPointerException e) {
+				// TODO Auto-generated catch block
+				return null;
+			}
+		}
+		public void createAlert(String username, String from, String to, Date date, boolean active) {
 	        db.getTransaction().begin();
 	        Traveler traveler = db.find(Traveler.class, username);
 	        if (traveler == null) {
@@ -549,7 +692,6 @@ public class TestDataAccess {
 	        db.createQuery("DELETE FROM Alert").executeUpdate();
 	        db.getTransaction().commit();
 	    }
-
 	    public void removeAllRides() {
 	        db.getTransaction().begin();
 	        db.createQuery("DELETE FROM Ride").executeUpdate();
