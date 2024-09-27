@@ -117,7 +117,7 @@ public class DataAccess {
 			Ride ride3 = driver1.getCreatedRides().get(2);
 			Ride ride4 = driver1.getCreatedRides().get(3);
 			Ride ride5 = driver2.getCreatedRides().get(0);
-			
+
 			Booking book1 = new Booking(ride4, traveler1, 2);
 			Booking book2 = new Booking(ride1, traveler1, 2);
 			Booking book4 = new Booking(ride3, traveler1, 1);
@@ -158,7 +158,7 @@ public class DataAccess {
 			traveler1.addBookedRide(book4);
 			traveler1.addBookedRide(book5);
 			db.merge(traveler1);
-			
+
 			Car c1 = new Car("1234ABC", "Renault", 5);
 			Car c2 = new Car("5678DEF", "Citroen", 3);
 			Car c3 = new Car("9101GHI", "Audi", 5);
@@ -343,6 +343,7 @@ public class DataAccess {
 		query.setParameter("username", erab);
 		return query.getSingleResult();
 	}
+
 	public double getActualMoney(String erab) {
 		TypedQuery<Double> query = db.createQuery("SELECT u.money FROM User u WHERE u.username = :username",
 				Double.class);
@@ -477,6 +478,7 @@ public class DataAccess {
 			return false;
 		}
 	}
+
 	public boolean gauzatuEragiketa(String username, double amount, boolean deposit) {
 		try {
 			db.getTransaction().begin();
