@@ -2622,5 +2622,5 @@ public class DeleteUserBDBlackTest {
 				fail();
 			}
 		}
-	}	
+	}
 }
