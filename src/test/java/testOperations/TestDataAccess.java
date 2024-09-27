@@ -493,7 +493,7 @@ public class TestDataAccess {
 		        }
 
 		        // Commit the transaction
-		        db.getTransaction().commit();
+		        db.getTransaction().commit(); 
 
 		        System.out.println("Successfully deleted all rides.");
 
@@ -501,4 +501,65 @@ public class TestDataAccess {
 		        e.printStackTrace();
 		    }
 		}
+	    public void createAlert(String username, String from, String to, Date date, boolean active) {
+	        db.getTransaction().begin();
+	        Traveler traveler = db.find(Traveler.class, username);
+	        if (traveler == null) {
+	            traveler = new Traveler(username, "password");
+	            db.persist(traveler);
+	        }
+	        Alert alert = new Alert(from, to, date, traveler);
+	        alert.setActive(active);
+	        db.persist(alert);
+	        db.getTransaction().commit();
+	    }
+	    public void createRide(String from, String to, Date date, int nPlaces) {
+	        db.getTransaction().begin();
+	        Ride ride = new Ride(from, to, date, nPlaces, 0, null);
+	        db.persist(ride);
+	        db.getTransaction().commit();
+	    }
+	    public Alert getAlert(String username) {
+	        return db.createQuery("SELECT a FROM Alert a WHERE a.traveler.username = :username", Alert.class)
+	                 .setParameter("username", username)
+	                 .getSingleResult();
+	    }
+	    public void removeAlert(String username) {
+	        db.getTransaction().begin();
+	        Alert alert = getAlert(username);
+	        if (alert != null) {
+	            db.remove(alert);
+	        }
+	        db.getTransaction().commit();
+	    }
+	    public void removeRide(String from, String to, Date date) {
+	        db.getTransaction().begin();
+	        Ride ride = db.createQuery("SELECT r FROM Ride r WHERE r.from = :from AND r.to = :to AND r.date = :date", Ride.class)
+	                      .setParameter("from", from)
+	                      .setParameter("to", to)
+	                      .setParameter("date", date)
+	                      .getSingleResult();
+	        if (ride != null) {
+	            db.remove(ride);
+	        }
+	        db.getTransaction().commit();
+	    }
+	    public void removeAllAlerts() {
+	        db.getTransaction().begin();
+	        db.createQuery("DELETE FROM Alert").executeUpdate();
+	        db.getTransaction().commit();
+	    }
+
+	    public void removeAllRides() {
+	        db.getTransaction().begin();
+	        db.createQuery("DELETE FROM Ride").executeUpdate();
+	        db.getTransaction().commit();
+	    } 
+	    public List<Alert> getAlerts(String username) {
+	        Traveler traveler = db.find(Traveler.class, username);
+	        if (traveler != null) {
+	            return traveler.getAlerts();
+	        }
+	        return new ArrayList<>();
+	    }
 }
