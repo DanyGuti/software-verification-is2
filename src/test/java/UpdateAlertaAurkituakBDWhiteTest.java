@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Date;
+import java.util.List;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
@@ -160,7 +161,7 @@ public class UpdateAlertaAurkituakBDWhiteTest {
     public void testMultipleAlertsNoMatch() {
         String username = "Pepe";
         String from1 = "Barcelona";
-        String to1 = "Madrid";
+        String to1 = "Madrid"; 
         String from2 = "Valencia";
         String to2 = "Sevilla";
         Date date = null;
@@ -195,7 +196,7 @@ public class UpdateAlertaAurkituakBDWhiteTest {
         } finally {
             testDA.open();
             testDA.removeTraveler(username);
-            testDA.removeAllAlerts();
+            testDA.removeAllAlerts(); 
             testDA.removeAllRides();
             testDA.close();
         }
