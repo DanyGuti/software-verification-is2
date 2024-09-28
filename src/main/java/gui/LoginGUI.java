@@ -59,7 +59,7 @@ public class LoginGUI extends JFrame {
 
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jButtonClose_actionPerformed(e);
+				jButtonCloseActionPerformed(e);
 			}
 		});
 
@@ -81,7 +81,7 @@ public class LoginGUI extends JFrame {
 						a.setVisible(true);
 
 					}
-					jButtonClose_actionPerformed(e);
+					jButtonCloseActionPerformed(e);
 				} else {
 					lblErrorea.setForeground(Color.RED);
 					lblErrorea.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.ErrorNotRegistered"));
