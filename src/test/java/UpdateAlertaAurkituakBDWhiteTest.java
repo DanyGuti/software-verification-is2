@@ -14,7 +14,7 @@ public class UpdateAlertaAurkituakBDWhiteTest {
 
     private static DataAccess sut = new DataAccess();
     private static TestDataAccess testDA = new TestDataAccess();
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); 
 
     @Before
     public void setUp() {
@@ -221,7 +221,7 @@ public class UpdateAlertaAurkituakBDWhiteTest {
             testDA.createRide(from, "Valencia", date, 2);
             testDA.close();
 
-            sut.open();
+            sut.open(); 
             boolean result = sut.updateAlertaAurkituak(username);
             sut.close();
 
@@ -261,6 +261,46 @@ public class UpdateAlertaAurkituakBDWhiteTest {
         } finally {
             testDA.open();
             testDA.removeTraveler(username);
+            testDA.close();
+        }
+    } 
+    
+    @Test
+    public void AlertEqualAsNull() {
+        String username = "Alfredo";
+        String from = null;
+        String to = null;
+        Date date = null;
+        try {
+            date = sdf.parse("15/10/2024");
+        } catch (ParseException e) {
+            fail("Error parsing date");
+        }
+
+        try {
+            testDA.open();
+            testDA.createTraveler(username, "password");
+            testDA.createAlert(username, from, to, date, false);
+            testDA.createRide(from, "Valencia", date, 2);
+            testDA.close();
+
+            sut.open();
+            boolean result = sut.updateAlertaAurkituak(username);
+            sut.close();
+
+            assertFalse(result);
+
+            testDA.open();
+            Alert alert = testDA.getAlert(username);
+            assertFalse(alert.isFound());
+            testDA.close();
+        } catch (Exception e) {
+            fail("Exception: " + e.getMessage());
+        } finally {
+            testDA.open();
+            testDA.removeTraveler(username);
+            testDA.removeAllAlerts();
+            testDA.removeAllRides();
             testDA.close();
         }
     }
