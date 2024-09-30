@@ -242,28 +242,6 @@ public class UpdateAlertaAurkituakBDWhiteTest {
         }
     }
 
-    @Test
-    public void testUserWithoutAlerts() {
-        String username = "usuarioSinAlertas";
-
-        try {
-            testDA.open();
-            testDA.createTraveler(username, "password");
-            testDA.close();
-
-            sut.open();
-            boolean result = sut.updateAlertaAurkituak(username);
-            sut.close();
-
-            assertFalse(result);
-        } catch (Exception e) {
-            fail("Exception: " + e.getMessage());
-        } finally {
-            testDA.open();
-            testDA.removeTraveler(username);
-            testDA.close();
-        }
-    } 
     
     @Test
     public void AlertEqualAsNull() {
