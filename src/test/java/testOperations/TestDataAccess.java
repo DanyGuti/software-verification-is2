@@ -237,7 +237,10 @@ public class TestDataAccess {
 				} else {
 				    System.out.println("Ride not found in the database.");
 				}
-				System.out.println(rideF);
+				if (seats > rideF.getnPlaces()) {
+					return null;
+				}
+				System.out.println(rideF.getnPlaces());
 				booking = new Booking(rideF, travF, seats);
 				booking.setTraveler(travF);
 				
@@ -591,6 +594,9 @@ public class TestDataAccess {
 				    }
 				} else {
 				    System.out.println("Ride not found in the database.");
+				}
+				if (travF.getMoney() < rideF.getPrice()) {
+					return null;
 				}
 				System.out.println(rideF);
 				booking = new Booking(rideF, travF, seats);
