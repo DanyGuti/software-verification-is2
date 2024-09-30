@@ -268,8 +268,6 @@ public class DeleteUserMockWhiteTest {
 	// setting the frozen money of Traveler
 	// Traveler should have initial money plus the price
 	// Driver is erased, and also its car (1 in this case erased)
-	// NEEDS A REFACTOR TO GET MOVEMENTS BY TRAVELER
-	// theres is a new movement created by bookings (CAN NOT ACCESS THE MOVEMENTS)
 	public void test4() {
 		// Define parameters
 		String driverUsername = "Daniel";
@@ -356,6 +354,10 @@ public class DeleteUserMockWhiteTest {
 	        
 	        Mockito.when(db.find(Movement.class, movement1)).thenReturn(movement1);
 			Mockito.when(db.find(Movement.class, movement2)).thenReturn(movement2);
+		        
+		    Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+		    Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
+
 
 			sut.open();
 			sut.deleteUser(driver1);
@@ -389,9 +391,13 @@ public class DeleteUserMockWhiteTest {
 	        Car foundCar = db.find(Car.class, TUITION_1);
 	        assertNull(foundCar); // Ensure the car is null
 	        
-	        // Retrieve movements from the database
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER retrievedMovement1 = db.find(Movement.class, );
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER  Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+	        Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+	        Movement retrievedMovement1 = db.find(Movement.class, expectedMovement1);
+	        assertNotNull(retrievedMovement1);
+	        
+	        Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
+	        Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+	        assertNotNull(retrievedMovement2);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -405,8 +411,6 @@ public class DeleteUserMockWhiteTest {
 	// setting the frozen money of Traveler
 	// Traveler should have initial money plus the price
 	// Driver is erased, and also its cars (2 in this case erased)
-	// NEEDS A REFACTOR TO GET MOVEMENTS BY TRAVELER
-	// theres is a new movement created by bookings (CAN NOT ACCESS THE MOVEMENTS)
 	public void test5() {
 		// Define parameters
 		String driverUsername = "Daniel";
@@ -503,6 +507,9 @@ public class DeleteUserMockWhiteTest {
 	        
 	        Mockito.when(db.find(Movement.class, movement1)).thenReturn(movement1);
 			Mockito.when(db.find(Movement.class, movement2)).thenReturn(movement2);
+			
+		    Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+		    Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
 
 			sut.open();
 			sut.deleteUser(driver1);
@@ -540,9 +547,14 @@ public class DeleteUserMockWhiteTest {
 	        Car foundCar2 = db.find(Car.class, TUITION_2);
 	        assertNull(foundCar2); // Ensure the car is null
 	        
-	        // Retrieve movements from the database
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER retrievedMovement1 = db.find(Movement.class, );
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER  Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+	        Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+	        Movement retrievedMovement1 = db.find(Movement.class, expectedMovement1);
+	        assertNotNull(retrievedMovement1);
+	        
+	        Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
+	        Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+	        assertNotNull(retrievedMovement2);
+	        
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -585,7 +597,6 @@ public class DeleteUserMockWhiteTest {
 	@Test
 	// Should return 5 seats again after the booking
 	// For the ride1, and delete the user, Booking as "Rejected"
-	// THERE IS NO MOVEMENTS IMPLEMENTATION AT DOMAIN LEVEL IS NEEDED
 	public void test7() {
 		// Define parameters
 		String driverUsername = "Daniel";
@@ -639,6 +650,9 @@ public class DeleteUserMockWhiteTest {
 	        
 	        Movement expectedMovement1 = new Movement(trav1, "BookDeny", 30.0);
 		    Mockito.when(db.merge(expectedMovement1)).thenReturn(expectedMovement1);
+		    
+		    Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+
 	        
 	        Mockito.when(db.find(Movement.class, movement1)).thenReturn(movement1);
 	        Mockito.when(db.merge(trav1)).thenReturn(trav1);
@@ -657,10 +671,10 @@ public class DeleteUserMockWhiteTest {
 	        // Verify that the driver is now null
 	        Mockito.when(db.find(Traveler.class, trav1.getUsername())).thenReturn(null);
 			assertNull(db.find(Traveler.class, trav1.getUsername()));
-	        
-	        // Retrieve movements from the database
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER retrievedMovement1 = db.find(Movement.class, );
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER  Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+			
+	        Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+	        Movement retrievedMovement1 = db.find(Movement.class, expectedMovement1);
+	        assertNotNull(retrievedMovement1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -671,7 +685,6 @@ public class DeleteUserMockWhiteTest {
 	// Should return 5 seats again after the booking1
 	// Should return 5 seats again after the booking2
 	// For the ride1, and delete the user, booking1 as "Rejected", booking2 as "Rejected"
-	// THERE IS NO MOVEMENTS IMPLEMENTATION AT DOMAIN LEVEL IS NEEDED
 	public void test8() {
 		// Define parameters
 		String driverUsername = "Daniel";
@@ -743,6 +756,10 @@ public class DeleteUserMockWhiteTest {
 	        Mockito.when(db.merge(trav1)).thenReturn(trav1);
 	        db.merge(trav1);
 	        
+	        Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+	        Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
+
+	        
 			sut.open();
 			sut.deleteUser(trav1);
 			sut.close();
@@ -760,10 +777,14 @@ public class DeleteUserMockWhiteTest {
 	        // Verify that the driver is now null
 	        Mockito.when(db.find(Traveler.class, trav1.getUsername())).thenReturn(null);
 			assertNull(db.find(Traveler.class, trav1.getUsername()));
+			
+	        Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+	        Movement retrievedMovement1 = db.find(Movement.class, expectedMovement1);
+	        assertNotNull(retrievedMovement1);
 	        
-	        // Retrieve movements from the database
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER retrievedMovement1 = db.find(Movement.class, );
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER  Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+	        Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
+	        Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+	        assertNotNull(retrievedMovement2);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -775,7 +796,6 @@ public class DeleteUserMockWhiteTest {
 	// Should return 5 seats again after the booking2
 	// For the ride1, and delete the user, booking1 as "Rejected", booking2 as "Rejected"
 	// Also the Alert should be null
-	// THERE IS NO MOVEMENTS IMPLEMENTATION AT DOMAIN LEVEL IS NEEDED
 	public void test9() {
 		// Define parameters
 		String driverUsername = "Daniel";
@@ -867,6 +887,9 @@ public class DeleteUserMockWhiteTest {
 	        Mockito.when(db.merge(trav1)).thenReturn(trav1);
 	        db.merge(trav1);
 	        
+	        Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+	        Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
+	        
 			sut.open();
 			sut.deleteUser(trav1);
 			sut.close();
@@ -891,10 +914,13 @@ public class DeleteUserMockWhiteTest {
 			Mockito.when(db.find(Alert.class, alert.getAlertNumber())).thenReturn(null);
 			assertNull(db.find(Alert.class, alert.getAlertNumber()));
 			
+	        Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+	        Movement retrievedMovement1 = db.find(Movement.class, expectedMovement1);
+	        assertNotNull(retrievedMovement1);
 	        
-	        // Retrieve movements from the database
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER retrievedMovement1 = db.find(Movement.class, );
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER  Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+	        Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
+	        Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+	        assertNotNull(retrievedMovement2);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -907,7 +933,6 @@ public class DeleteUserMockWhiteTest {
 	// Should return 5 seats again after the booking2
 	// For the ride1, and delete the user, booking1 as "Rejected", booking2 as "Rejected"
 	// Also the Alerts should be null
-	// THERE IS NO MOVEMENTS IMPLEMENTATION AT DOMAIN LEVEL IS NEEDED
 	public void test10() {
 		// Define parameters
 		String driverUsername = "Daniel";
@@ -1010,6 +1035,10 @@ public class DeleteUserMockWhiteTest {
 	        Mockito.when(db.merge(trav1)).thenReturn(trav1);
 	        db.merge(trav1);
 	        
+	        Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+	        Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
+	        
+	        
 			sut.open();
 			sut.deleteUser(trav1);
 			sut.close();
@@ -1039,11 +1068,14 @@ public class DeleteUserMockWhiteTest {
 			Mockito.when(db.find(Alert.class, alert.getAlertNumber())).thenReturn(null);
 			assertNull(db.find(Alert.class, alert.getAlertNumber()));
 			
+			Mockito.when(db.find(Movement.class, expectedMovement1)).thenReturn(expectedMovement1);
+	        Movement retrievedMovement1 = db.find(Movement.class, expectedMovement1);
+	        assertNotNull(retrievedMovement1);
 	        
-	        // Retrieve movements from the database
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER retrievedMovement1 = db.find(Movement.class, );
-	        // Movement CAN NOT BE ACCESSED BY TRAVELER NOR USER  Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
-
+	        Mockito.when(db.find(Movement.class, expectedMovement2)).thenReturn(expectedMovement2);
+	        Movement retrievedMovement2 = db.find(Movement.class, expectedMovement2);
+	        assertNotNull(retrievedMovement2);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
@@ -1077,5 +1109,4 @@ public class DeleteUserMockWhiteTest {
 			assertTrue(true);
 		}
 	}
-	
 }
