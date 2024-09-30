@@ -1033,6 +1033,7 @@ public class DeleteUserBDBlackTest {
 		}
 	}
 	@Test
+	// No booking allowed, traveler has no money
 	public void test14() {
 		// Define parameters
 		String driverUsername = "Daniel";
@@ -1120,61 +1121,8 @@ public class DeleteUserBDBlackTest {
 		}
 	}
 	@Test
-	//sut.createRide:  the date of the ride must be later than today. The RideMustBeLaterThanTodayException 
-	// exception must be thrown. 
-	public void test15 () {
-		
-		String driverUsername="Driver Test";
-		String driverPassword="123";
-
-		String rideFrom="Donostia";
-		String rideTo="Zarautz";
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date rideDate=null;
-		
-		boolean driverCreated=false;
-
-		try {
-			rideDate = sdf.parse("05/10/2018");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}	
-		try {
-			
-			//define parameters
-			testDA.open();
-			if (!testDA.existDriver(driverUsername)) {
-				testDA.createDriver(driverUsername,driverPassword);
-			    driverCreated=true;
-			}
-			testDA.close();		
-			
-			//invoke System Under Test (sut)  
-			sut.open();
-		    sut.createRide(rideFrom, rideTo, rideDate, 2, 10, driverUsername);
-			sut.close();
-			
-			fail();
-			
-		   } catch (RideMustBeLaterThanTodayException  e) {
-			 //verify the results
-				sut.close();
-				assertTrue(true);
-			} catch (RideAlreadyExistException e) {
-				sut.close();
-				fail();
-		} finally {
-				  //Remove the created objects in the database (cascade removing)   
-				testDA.open();
-				  if (driverCreated) 
-					  testDA.removeDriver(driverUsername);
-		          testDA.close();
-		        }
-		   }
-	@Test
 	// Same date RIDE
-	public void test16() {
+	public void test15() {
 		// Define parameters
 		String driverUsername = "Daniel";
 		String driverPassword = "dsadjasld";
@@ -1309,7 +1257,7 @@ public class DeleteUserBDBlackTest {
 	
 	@Test
 	// LESS THAN NOW date RIDE
-	public void test17() {
+	public void test16() {
 		// Define parameters
 		String driverUsername = "Daniel";
 		String driverPassword = "dsadjasld";
@@ -1380,7 +1328,8 @@ public class DeleteUserBDBlackTest {
 		}
 	}
 	@Test
-	public void test18() {
+	// Booking has more seats than ride has
+	public void test17() {
 		// Define parameters
 		String driverUsername = "Daniel";
 		String driverPassword = "dsadjasld";
@@ -1466,6 +1415,7 @@ public class DeleteUserBDBlackTest {
 			}
 		}
 	}
+	// @Test 18 will be with the bussiness rule (do not know them)
 	@Test
 	// Should delete Traveler
 	// Booking1 status == "Rejected"
@@ -1832,6 +1782,8 @@ public class DeleteUserBDBlackTest {
 			}
 		}	
 	}
+	// test 22 is the same as 21 (erasing different more than two cars, but different)
+	// VL
 	@Test
 //	 TWO Booking and TWO Movement for the Traveler to erase
 //	 TWO Alert, 2 Rides, one Car, Traveler has 100 in Money, one Driver
@@ -1965,7 +1917,7 @@ public class DeleteUserBDBlackTest {
 	@Test
 //	 TWO Booking and TWO Movement for the Traveler to erase
 //	 TWO Alert, 2 Rides, one Car, Traveler has 100 in Money, one Driver
-//	 Should erase Traveler user, Driver in Database, Ride should have extra seats
+//	 Should erase Traveler user, Driver in Database
 	public void test23() {
 		// Define parameters
 		String driverUsername = "Daniel";
@@ -2093,7 +2045,7 @@ public class DeleteUserBDBlackTest {
 		}
 	}
 	@Test
-	// Should throw exception of user.mota
+	// Should throw exception of null user
 	public void test24() {
 		try {
 			User us = new User(null, null, null);
@@ -2109,7 +2061,7 @@ public class DeleteUserBDBlackTest {
 	// Should throw exception of user.mota
 	public void test25() {
 		try {
-			User us = new User(null, null, "Hello");
+			User us = new User("Daniel", "KDSAD", "Hello");
 	        sut.deleteUser(us);
 	        fail("Expected NullPointerException to be thrown");
 	    } catch (NullPointerException e) {
@@ -2122,7 +2074,7 @@ public class DeleteUserBDBlackTest {
 	// Should throw exception of user.mota
 	public void test26() {
 		try {
-			User us = new User(null, null, "World");
+			User us = new User("Daniel", "dsamdla", "World");
 	        sut.deleteUser(us);
 	        fail("Expected NullPointerException to be thrown");
 	    } catch (NullPointerException e) {
@@ -2131,6 +2083,7 @@ public class DeleteUserBDBlackTest {
 	        fail("Unexpected exception: " + e);
 	    }
 	}
+	// TEST VALORES LÍMITE of not having a Car is Bussiness rule (I do not know)
 	@Test
 	// Can not create booking insufficient money
 	public void test27() {
@@ -2221,6 +2174,7 @@ public class DeleteUserBDBlackTest {
 	}
 	@Test
 	// Can not create booking insufficient money
+	// (Should make NegativeMoneyTravelerException)
 	public void test28() {
 		// Define parameters
 		String driverUsername = "Daniel";
@@ -2496,7 +2450,8 @@ public class DeleteUserBDBlackTest {
 			}
 		}
 	}
-	
+	// tes31 (do not know the business logic (if driver should have a car necessarily or not)
+	// test32 (does not apply with any logic)
 	@Test
 	// VL should book with less seats	 
 	public void test31() {
