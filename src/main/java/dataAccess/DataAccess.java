@@ -268,7 +268,6 @@ public class DataAccess {
 	 * @return collection of rides
 	 */
 	public List<Ride> getRides(String from, String to, Date date) {
-		System.out.println(">> DataAccess: getActiveRides=> from= " + from + " to= " + to + " date " + date);
 
 		List<Ride> res = new ArrayList<>();
 		TypedQuery<Ride> query = db.createQuery(
@@ -511,6 +510,7 @@ public class DataAccess {
 			db.getTransaction().begin();
 
 			Movement movement = new Movement(user, eragiketa, amount);
+			
 			db.persist(movement);
 			db.getTransaction().commit();
 		} catch (Exception e) {
@@ -652,7 +652,7 @@ public class DataAccess {
 	public void cancelRide(Ride ride) {
 		try {
 			db.getTransaction().begin();
-
+			
 			for (Booking booking : ride.getBookings()) {
 				if (booking.getStatus().equals("Accepted") || booking.getStatus().equals("NotDefined")) {
 					double price = booking.prezioaKalkulatu();
