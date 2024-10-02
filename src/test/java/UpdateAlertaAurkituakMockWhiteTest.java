@@ -64,12 +64,11 @@ public class UpdateAlertaAurkituakMockWhiteTest {
     }
 
     private void setupUpdateAlerta(String username, List<Alert> alerts, List<Ride> rides) {
-        // Mock the behavior of db.createQuery for Alert
+   
         Mockito.when(db.createQuery(Mockito.anyString(), Mockito.eq(Alert.class))).thenReturn(alertQuery);
         Mockito.when(alertQuery.setParameter(Mockito.anyString(), Mockito.any())).thenReturn(alertQuery);
         Mockito.when(alertQuery.getResultList()).thenReturn(alerts);
 
-        // Mock the behavior of db.createQuery for Ride
         Mockito.when(db.createQuery(Mockito.anyString(), Mockito.eq(Ride.class))).thenReturn(rideQuery);
         Mockito.when(rideQuery.setParameter(Mockito.anyString(), Mockito.any())).thenReturn(rideQuery);
         Mockito.when(rideQuery.getResultList()).thenReturn(rides);
@@ -81,6 +80,7 @@ public class UpdateAlertaAurkituakMockWhiteTest {
         String from = "Barcelona";
         String to = "Madrid";
         Date date = null;
+        Integer nPlaces=2;
         try {
             date = sdf.parse("15/10/2024");
         } catch (ParseException e) {
@@ -88,8 +88,8 @@ public class UpdateAlertaAurkituakMockWhiteTest {
         }
 
         Traveler traveler = new Traveler(username, "password");
-        Alert alert = new Alert(traveler, from, to, date);
-        Ride ride = new Ride(from, to, date, 2);
+        Alert alert = new Alert(from,to,date,traveler);
+        Ride ride = new Ride(from, to, date, nPlaces,0,null);
 
         List<Alert> alerts = new ArrayList<>();
         alerts.add(alert);
@@ -103,9 +103,10 @@ public class UpdateAlertaAurkituakMockWhiteTest {
         assertTrue(result);
         assertTrue(alert.isFound());
 
-        Mockito.verify(db).persist(alert);
-        Mockito.verify(et).begin();
-        Mockito.verify(et).commit();
+        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
+        Alert foundAlert = db.find(Alert.class, alert.getTo());
+        assertNotNull(foundAlert);
+        assertTrue(foundAlert.isFound());
     }
 
     @Test
@@ -121,7 +122,7 @@ public class UpdateAlertaAurkituakMockWhiteTest {
         }
 
         Traveler traveler = new Traveler(username, "password");
-        Alert alert = new Alert(traveler, from, to, date);
+        Alert alert = new Alert(from,to,date,traveler);
 
         List<Alert> alerts = new ArrayList<>();
         alerts.add(alert);
@@ -134,9 +135,10 @@ public class UpdateAlertaAurkituakMockWhiteTest {
         assertFalse(result);
         assertFalse(alert.isFound());
 
-        Mockito.verify(db, Mockito.never()).persist(alert);
-        Mockito.verify(et).begin();
-        Mockito.verify(et).commit();
+        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
+        Alert foundAlert = db.find(Alert.class, alert.getTo());
+        assertNotNull(foundAlert);
+        assertFalse(foundAlert.isFound());
     }
 
     @Test
@@ -146,17 +148,18 @@ public class UpdateAlertaAurkituakMockWhiteTest {
         String to1 = "Madrid";
         String from2 = "Valencia";
         String to2 = "Sevilla";
+        Integer nPlaces = 2;
         Date date = null;
         try {
             date = sdf.parse("15/10/2024");
         } catch (ParseException e) {
             fail("Error parsing date");
-        }
+        } 
 
         Traveler traveler = new Traveler(username, "password");
-        Alert alert1 = new Alert(traveler, from1, to1, date);
-        Alert alert2 = new Alert(traveler, from2, to2, date);
-        Ride ride = new Ride(from1, to1, date, 2);
+        Alert alert1 = new Alert(from1, to1, date,traveler);
+        Alert alert2 = new Alert(from2, to2, date, traveler);
+        Ride ride = new Ride(from1, to1, date, nPlaces,0, null);
 
         List<Alert> alerts = new ArrayList<>();
         alerts.add(alert1);
@@ -172,12 +175,124 @@ public class UpdateAlertaAurkituakMockWhiteTest {
         assertTrue(alert1.isFound());
         assertFalse(alert2.isFound());
 
-        Mockito.verify(db).persist(alert1);
-        Mockito.verify(db, Mockito.never()).persist(alert2);
-        Mockito.verify(et).begin();
-        Mockito.verify(et).commit();
+        Mockito.when(db.find(Alert.class, alert2.getTo())).thenReturn(alert2);
+        Alert foundAlert2 = db.find(Alert.class, alert2.getTo());
+        assertNotNull(foundAlert2);
+        assertFalse(foundAlert2.isFound());
     }
 
+    @Test
+    public void testMultipleAlertsNoMatch() {
+        String username = "Pepe";
+        String from1 = "Barcelona";
+        String to1 = "Madrid";
+        String from2 = "Valencia";
+        String to2 = "Sevilla";
+        Date date = null;
+        try {
+            date = sdf.parse("15/10/2024");
+        } catch (ParseException e) {
+            fail("Error parsing date");
+        }
+
+        Traveler traveler = new Traveler(username, "password");
+        Alert alert1 = new Alert(from1, to1, date, traveler);
+        Alert alert2 = new Alert(from2, to2, date, traveler);
+        Ride ride = new Ride("Bilbao", "Santander", date, 2, 0, null);
+
+        List<Alert> alerts = new ArrayList<>();
+        alerts.add(alert1);
+        alerts.add(alert2);
+        List<Ride> rides = new ArrayList<>();
+        rides.add(ride);
+
+        setupUpdateAlerta(username, alerts, rides);
+
+        boolean result = sut.updateAlertaAurkituak(username);
+
+        assertFalse(result);
+        assertFalse(alert1.isFound());
+        assertFalse(alert2.isFound());
+
+        Mockito.when(db.find(Alert.class, alert1.getTo())).thenReturn(alert1);
+        Alert foundAlert1 = db.find(Alert.class, alert1.getTo());
+        assertNotNull(foundAlert1);
+        assertFalse(foundAlert1.isFound());
+
+        Mockito.when(db.find(Alert.class, alert2.getTo())).thenReturn(alert2);
+        Alert foundAlert2 = db.find(Alert.class, alert2.getTo());
+        assertNotNull(foundAlert2);
+        assertFalse(foundAlert2.isFound());
+    }
+
+    @Test
+    public void testPartialMatch() {
+        String username = "Alfredo";
+        String from = "Barcelona";
+        String to = "Madrid";
+        Date date = null;
+        try {
+            date = sdf.parse("15/10/2024");
+        } catch (ParseException e) {
+            fail("Error parsing date");
+        }
+
+        Traveler traveler = new Traveler(username, "password");
+        Alert alert = new Alert(from, to, date, traveler);
+        Ride ride = new Ride(from, "Valencia", date, 2, 0, null);
+
+        List<Alert> alerts = new ArrayList<>();
+        alerts.add(alert);
+        List<Ride> rides = new ArrayList<>();
+        rides.add(ride);
+
+        setupUpdateAlerta(username, alerts, rides);
+
+        boolean result = sut.updateAlertaAurkituak(username);
+
+        assertFalse(result);
+        assertFalse(alert.isFound());
+
+        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
+        Alert foundAlert = db.find(Alert.class, alert.getTo());
+        assertNotNull(foundAlert);
+        assertFalse(foundAlert.isFound());
+    }
+
+    @Test
+    public void testAlertEqualAsNull() {
+        String username = "Alfredo";
+        String from = "Madrid";
+        String to = "Valencia";
+        Date date = null;
+        try {
+            date = sdf.parse("15/10/2024");
+        } catch (ParseException e) {
+            fail("Error parsing date");
+        }
+
+        Traveler traveler = new Traveler(username, "password");
+        Alert alert = new Alert(null, null, null, traveler);
+        Ride ride = new Ride(from, to, date, 2, 0, null);
+
+        List<Alert> alerts = new ArrayList<>();
+        alerts.add(alert);
+        List<Ride> rides = new ArrayList<>();
+        rides.add(ride);
+
+        setupUpdateAlerta(username, alerts, rides);
+
+        boolean result = sut.updateAlertaAurkituak(username);
+
+        assertFalse(result);
+        assertFalse(alert.isFound());
+
+        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
+        Alert foundAlert = db.find(Alert.class, alert.getTo());
+        assertNotNull(foundAlert);  
+        assertFalse(foundAlert.isFound());
+    }
+    
     @Test(expected = Exception.class)
     public void testNonExistentUser() {
         String username = "usuarioError";
