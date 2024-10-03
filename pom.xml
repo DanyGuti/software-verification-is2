@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>Rides24</groupId>
-  <artifactId>Rides24</artifactId>
+  <artifactId>software-verification-is2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
 <build>
@@ -26,7 +26,11 @@
 
 <properties>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
+	<maven.compiler.source>1.8</maven.compiler.source>
+	<sonar.organization>project-verification-is2</sonar.organization>
+	<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	<sonar.projectKey>DanyGuti_software-verification-is2</sonar.projectKey>
+	<sonar.login>b7ca90f5086cf5c84473e615d67a55f825cc9c6f</sonar.login>
 </properties>
 
 <!-- https://mvnrepository.com/artifact/junit/junit -->
