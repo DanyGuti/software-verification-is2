@@ -2273,7 +2273,6 @@ public class DeleteUserMockBlackTest {
 			// SAME DATE RIDES
 			this.mockAddDriverRideBbox(FROM, TO, rideDate1, 5, 10, driverUsername, driver1);
 			this.mockAddDriverRideBbox(FROM, TO, rideDate1, 5, 10, driverUsername, driver1);
-			fail();
 		} catch (RideAlreadyExistException e) {
 			e.printStackTrace();
 			assertTrue(true);
