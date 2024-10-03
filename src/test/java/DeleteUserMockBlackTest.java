@@ -2338,7 +2338,7 @@ public class DeleteUserMockBlackTest {
 		}
 	}
 	// tes31 (do not know the business logic (if driver should have a car necessarily or not)
-	// test32 (does not apply with any logic)
+	// test32 does not apply with any logic
 	@Test
 	// VL should book with less seats exception	 
 	public void test31() {
