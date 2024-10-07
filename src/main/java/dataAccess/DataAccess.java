@@ -616,24 +616,12 @@ public class DataAccess {
 			db.getTransaction().rollback();
 		}
 	}
-
-	public List<Booking> getBookingFromDriver(String username) {
+//LISTO 1
+	public List<Booking> getBookingFromDriver(String username) { 
 		try {
 			db.getTransaction().begin();
-			TypedQuery<Driver> query = db.createQuery("SELECT d FROM Driver d WHERE d.username = :username",
-					Driver.class);
-			query.setParameter("username", username);
-			Driver driver = query.getSingleResult();
-
-			List<Ride> rides = driver.getCreatedRides();
-			List<Booking> bookings = new ArrayList<>();
-
-			for (Ride ride : rides) {
-				if (ride.isActive()) {
-					bookings.addAll(ride.getBookings());
-				}
-			}
-
+			Driver driver = getDriverByUsername(username);
+			List<Booking> bookings = getActiveBookings(driver);
 			db.getTransaction().commit();
 			return bookings;
 		} catch (Exception e) {
@@ -641,6 +629,24 @@ public class DataAccess {
 			db.getTransaction().rollback();
 			return null;
 		}
+	}
+	private List<Booking> getActiveBookings(Driver driver) {
+		List<Ride> rides = driver.getCreatedRides();
+		List<Booking> bookings = new ArrayList<>();
+
+		for (Ride ride : rides) {
+			if (ride.isActive()) {
+				bookings.addAll(ride.getBookings());
+			}
+		}
+		return bookings; 
+	}
+	private Driver getDriverByUsername(String username) {
+		TypedQuery<Driver> query = db.createQuery("SELECT d FROM Driver d WHERE d.username = :username",
+				Driver.class);
+		query.setParameter("username", username);
+		Driver driver = query.getSingleResult();
+		return driver;
 	}
 
 	public void cancelRide(Ride ride) {
@@ -679,10 +685,7 @@ public class DataAccess {
 	public List<Ride> getRidesByDriver(String username) {
 		try {
 			db.getTransaction().begin();
-			TypedQuery<Driver> query = db.createQuery("SELECT d FROM Driver d WHERE d.username = :username",
-					Driver.class);
-			query.setParameter("username", username);
-			Driver driver = query.getSingleResult();
+			Driver driver = getDriverByUsername(username);
 
 			List<Ride> activeRides = getCurrentActiveRidesByDriver(driver);
 
