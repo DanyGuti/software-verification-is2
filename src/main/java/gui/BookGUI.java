@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class BookGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
-
+ 
 	private JComboBox<String> jComboBoxOrigin = new JComboBox<String>();
 	DefaultComboBoxModel<String> originLocations = new DefaultComboBoxModel<String>();
 
@@ -284,20 +284,16 @@ public class BookGUI extends JFrame {
 
 						e1.printStackTrace();
 					}
-					tableRides.getColumnModel().getColumn(0).setPreferredWidth(50);
-					tableRides.getColumnModel().getColumn(1).setPreferredWidth(50);
-					tableRides.getColumnModel().getColumn(2).setPreferredWidth(100);
-					tableRides.getColumnModel().getColumn(3).setPreferredWidth(50);
-					tableRides.getColumnModel().removeColumn(tableRides.getColumnModel().getColumn(4)); // not shown in
-					tableRides.getTableHeader().setReorderingAllowed(false);
-					tableRides.setColumnSelectionAllowed(false);
-					tableRides.setRowSelectionAllowed(true);
-					tableRides.setDefaultEditor(Object.class, null);
+					newConfigurationOnRideTable();
 
 				}
 			}
 
-		});
+			private void newConfigurationOnRideTable() {
+				newConfigurationOnRideTable();
+			}
+
+		}); 
 
 		this.getContentPane().add(jCalendar1, null);
 
