@@ -690,14 +690,7 @@ public class DataAccess {
 			query.setParameter("username", username);
 			Driver driver = query.getSingleResult();
 
-			List<Ride> rides = driver.getCreatedRides();
-			List<Ride> activeRides = new ArrayList<>();
-
-			for (Ride ride : rides) {
-				if (ride.isActive()) {
-					activeRides.add(ride);
-				}
-			}
+			List<Ride> activeRides = getCurrentActiveRidesByDriver(driver);
 
 			db.getTransaction().commit();
 			return activeRides;
@@ -706,6 +699,17 @@ public class DataAccess {
 			db.getTransaction().rollback();
 			return null;
 		}
+	}
+	private List<Ride> getCurrentActiveRidesByDriver(Driver driver) {
+		List<Ride> rides = driver.getCreatedRides();
+		List<Ride> activeRides = new ArrayList<>();
+
+		for (Ride ride : rides) {
+			if (ride.isActive()) {
+				activeRides.add(ride);
+			}
+		}
+		return activeRides;
 	}
 
 	public boolean addCar(String username, Car kotxe) {
