@@ -23,22 +23,64 @@ public class Complaint implements Serializable {
 	private String nor;
 	private String nori;
 	private Date noiz;
-	@ManyToOne
+	@ManyToOne 
 	private Booking booking;
 	private String deskripzioa;
 	private Boolean aurkeztua;
 	public String egoera;
 
-	public Complaint(String nor, String nori, Date noiz, Booking book, String deskripzioa, boolean aurkeztua) {
-		super();
-		this.nor = nor;
-		this.nori = nori;
-		this.noiz = noiz;
-		this.booking = book;
-		this.deskripzioa = deskripzioa;
-		this.aurkeztua = aurkeztua;
-		this.egoera = "";
-	}
+    private Complaint(Builder builder) {
+        this.nor = builder.nor;
+        this.nori = builder.nori;
+        this.noiz = builder.noiz;
+        this.booking = builder.booking;
+        this.deskripzioa = builder.deskripzioa;
+        this.aurkeztua = builder.aurkeztua;
+        this.egoera = "";
+    }
+
+    public static class Builder {
+        private String nor;
+        private String nori;
+        private Date noiz;
+        private Booking booking;
+        private String deskripzioa;
+        private boolean aurkeztua;
+
+        public Builder nor(String nor) {
+            this.nor = nor;
+            return this;
+        }
+
+        public Builder nori(String nori) {
+            this.nori = nori;
+            return this;
+        }
+
+        public Builder noiz(Date noiz) {
+            this.noiz = noiz; 
+            return this;
+        }
+
+        public Builder booking(Booking booking) {
+            this.booking = booking;
+            return this;
+        }
+
+        public Builder deskripzioa(String deskripzioa) {
+            this.deskripzioa = deskripzioa;
+            return this;
+        }
+
+        public Builder aurkeztua(boolean aurkeztua) {
+            this.aurkeztua = aurkeztua;
+            return this;
+        }
+
+        public Complaint build() {
+            return new Complaint(this);
+        }
+    }
 
 	public int getId() {
 		return id;
