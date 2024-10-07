@@ -52,7 +52,7 @@ public class ObjectdbManagerServer extends JDialog {
 
 	public ObjectdbManagerServer() {
 	    
-		ConfigXML c=ConfigXML.getInstance();
+		c = ConfigXML.getInstance();
 		
 		setTitle("objectDBManagerServer: running the database server");
 		setBounds(100, 100, 486, 180);
