@@ -484,14 +484,8 @@ public class DataAccess {
 			User user = getUser(username);
 			if (user != null) {
 				double currentMoney = user.getMoney();
-				if (deposit) {
-					user.setMoney(currentMoney + amount);
-				} else {
-					if ((currentMoney - amount) < 0)
-						user.setMoney(0);
-					else
-						user.setMoney(currentMoney - amount);
-				}
+				double updatedMoney = deposit ? (currentMoney + amount) : Math.max(user.getMoney() - amount, 0);
+				user.setMoney(updatedMoney);
 				db.merge(user);
 				db.getTransaction().commit();
 				return true;
