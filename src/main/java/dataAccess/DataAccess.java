@@ -511,6 +511,7 @@ public class DataAccess {
 			db.getTransaction().rollback();
 		}
 	}
+	//
 //LISTO 2
 	public boolean bookRide(String username, Ride ride, int seats, double desk) {
 	    try {
