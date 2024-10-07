@@ -511,7 +511,7 @@ public class DataAccess {
 			db.getTransaction().rollback();
 		}
 	}
-//LISTO 2 (disminuir complejidad)
+//LISTO 2 (disminuir complejidad) HUGO
 	public boolean bookRide(String username, Ride ride, int seats, double desk) {
 	    try {
 	        db.getTransaction().begin();
