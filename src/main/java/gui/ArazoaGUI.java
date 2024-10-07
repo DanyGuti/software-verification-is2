@@ -15,6 +15,8 @@ import javax.swing.SwingConstants;
 
 import businessLogic.BLFacade;
 import domain.Booking;
+import domain.Complaint;
+
 
 public class ArazoaGUI extends JFrame{
 
@@ -52,7 +54,9 @@ public class ArazoaGUI extends JFrame{
 		jButtonJun.setText(ResourceBundle.getBundle("Etiquetas").getString("ArazoaGUI.Eznaizaurkeztu"));
 		jButtonJun.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				appFacadeInterface.erreklamazioaBidali(nori, nork, gaur, booking, "Ez da agertu",false);
+				Complaint complaint = new Complaint(nori, nork, gaur, booking, "Ez da agertu",false);
+				
+				appFacadeInterface.erreklamazioaBidali(complaint);
 				jButtonClose_actionPerformed(e);
 			}
 		});

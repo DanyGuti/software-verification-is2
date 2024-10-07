@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 
 import businessLogic.BLFacade;
 import domain.Booking;
+import domain.Complaint;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -98,7 +99,8 @@ public class ErreklamazioakGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String textua = jtextAreaDeskripzioa.getText();
 				if (!textua.isEmpty()) {
-					appFacadeInterface.erreklamazioaBidali(nork, nori, gaur, booking, textua, true);
+					Complaint complaint = new Complaint(nork, nori, gaur, booking, textua, true);
+					appFacadeInterface.erreklamazioaBidali(complaint);
 					jButtonClose_actionPerformed(e);
 				} else {
 					jLabelEmaitza.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioakGUI.Error"));
