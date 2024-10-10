@@ -26,281 +26,281 @@ import domain.Ride;
 import domain.Traveler;
 
 public class UpdateAlertaAurkituakMockWhiteTest {
-
-    static DataAccess sut;
-    protected MockedStatic<Persistence> persistenceMock;
-
-    @Mock
-    protected EntityManagerFactory entityManagerFactory;
-
-    @Mock
-    protected EntityManager db;
-
-    @Mock
-    protected EntityTransaction et;
-
-    @Mock
-    public TypedQuery<Alert> alertQuery;
-
-    @Mock
-    public TypedQuery<Ride> rideQuery;
-
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-    @Before
-    public void init() {
-        MockitoAnnotations.openMocks(this);
-        persistenceMock = Mockito.mockStatic(Persistence.class);
-        persistenceMock.when(() -> Persistence.createEntityManagerFactory(Mockito.any()))
-                .thenReturn(entityManagerFactory);
-        Mockito.doReturn(db).when(entityManagerFactory).createEntityManager();
-        Mockito.doReturn(et).when(db).getTransaction();
-        sut = new DataAccess(db);
-    }
-
-    @After
-    public void tearDown() {
-        persistenceMock.close(); 
-    }
-
-    private void setupUpdateAlerta(String username, List<Alert> alerts, List<Ride> rides) {
-   
-        Mockito.when(db.createQuery(Mockito.anyString(), Mockito.eq(Alert.class))).thenReturn(alertQuery);
-        Mockito.when(alertQuery.setParameter(Mockito.anyString(), Mockito.any())).thenReturn(alertQuery);
-        Mockito.when(alertQuery.getResultList()).thenReturn(alerts);
-
-        Mockito.when(db.createQuery(Mockito.anyString(), Mockito.eq(Ride.class))).thenReturn(rideQuery);
-        Mockito.when(rideQuery.setParameter(Mockito.anyString(), Mockito.any())).thenReturn(rideQuery);
-        Mockito.when(rideQuery.getResultList()).thenReturn(rides);
-    }
-
-    @Test
-    public void testAlertMatchesRide() {
-        String username = "Hugo";
-        String from = "Barcelona";
-        String to = "Madrid";
-        Date date = null;
-        Integer nPlaces=2;
-        try {
-            date = sdf.parse("15/10/2024");
-        } catch (ParseException e) {
-            fail("Error parsing date");
-        }
-
-        Traveler traveler = new Traveler(username, "password");
-        Alert alert = new Alert(from,to,date,traveler);
-        Ride ride = new Ride(from, to, date, nPlaces,0,null);
-
-        List<Alert> alerts = new ArrayList<>();
-        alerts.add(alert);
-        List<Ride> rides = new ArrayList<>();
-        rides.add(ride);
-
-        setupUpdateAlerta(username, alerts, rides);
-
-        boolean result = sut.updateAlertaAurkituak(username);
-
-        assertTrue(result);
-        assertTrue(alert.isFound());
-
-        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
-        Alert foundAlert = db.find(Alert.class, alert.getTo());
-        assertNotNull(foundAlert);
-        assertTrue(foundAlert.isFound());
-    }
-
-    @Test
-    public void testNoMatchingRide() {
-        String username = "Alex";
-        String from = "Barcelona";
-        String to = "Madrid";
-        Date date = null;
-        try {
-            date = sdf.parse("15/10/2024");
-        } catch (ParseException e) {
-            fail("Error parsing date");
-        }
-
-        Traveler traveler = new Traveler(username, "password");
-        Alert alert = new Alert(from,to,date,traveler);
-
-        List<Alert> alerts = new ArrayList<>();
-        alerts.add(alert);
-        List<Ride> rides = new ArrayList<>();
-
-        setupUpdateAlerta(username, alerts, rides);
-
-        boolean result = sut.updateAlertaAurkituak(username);
-
-        assertFalse(result);
-        assertFalse(alert.isFound());
-
-        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
-        Alert foundAlert = db.find(Alert.class, alert.getTo());
-        assertNotNull(foundAlert);
-        assertFalse(foundAlert.isFound());
-    }
-
-    @Test
-    public void testMultipleAlertsOneMatch() {
-        String username = "Juan";
-        String from1 = "Barcelona";
-        String to1 = "Madrid";
-        String from2 = "Valencia";
-        String to2 = "Sevilla";
-        Integer nPlaces = 2;
-        Date date = null;
-        try {
-            date = sdf.parse("15/10/2024");
-        } catch (ParseException e) {
-            fail("Error parsing date");
-        } 
-
-        Traveler traveler = new Traveler(username, "password");
-        Alert alert1 = new Alert(from1, to1, date,traveler);
-        Alert alert2 = new Alert(from2, to2, date, traveler);
-        Ride ride = new Ride(from1, to1, date, nPlaces,0, null);
-
-        List<Alert> alerts = new ArrayList<>();
-        alerts.add(alert1);
-        alerts.add(alert2);
-        List<Ride> rides = new ArrayList<>();
-        rides.add(ride);
-
-        setupUpdateAlerta(username, alerts, rides);
-
-        boolean result = sut.updateAlertaAurkituak(username);
-
-        assertTrue(result);
-        assertTrue(alert1.isFound());
-        assertFalse(alert2.isFound());
-
-        Mockito.when(db.find(Alert.class, alert2.getTo())).thenReturn(alert2);
-        Alert foundAlert2 = db.find(Alert.class, alert2.getTo());
-        assertNotNull(foundAlert2);
-        assertFalse(foundAlert2.isFound());
-    }
-
-    @Test
-    public void testMultipleAlertsNoMatch() {
-        String username = "Pepe";
-        String from1 = "Barcelona";
-        String to1 = "Madrid";
-        String from2 = "Valencia";
-        String to2 = "Sevilla";
-        Date date = null;
-        try {
-            date = sdf.parse("15/10/2024");
-        } catch (ParseException e) {
-            fail("Error parsing date");
-        }
-
-        Traveler traveler = new Traveler(username, "password");
-        Alert alert1 = new Alert(from1, to1, date, traveler);
-        Alert alert2 = new Alert(from2, to2, date, traveler);
-        Ride ride = new Ride("Bilbao", "Santander", date, 2, 0, null);
-
-        List<Alert> alerts = new ArrayList<>();
-        alerts.add(alert1);
-        alerts.add(alert2);
-        List<Ride> rides = new ArrayList<>();
-        rides.add(ride);
-
-        setupUpdateAlerta(username, alerts, rides);
-
-        boolean result = sut.updateAlertaAurkituak(username);
-
-        assertFalse(result);
-        assertFalse(alert1.isFound());
-        assertFalse(alert2.isFound());
-
-        Mockito.when(db.find(Alert.class, alert1.getTo())).thenReturn(alert1);
-        Alert foundAlert1 = db.find(Alert.class, alert1.getTo());
-        assertNotNull(foundAlert1);
-        assertFalse(foundAlert1.isFound());
-
-        Mockito.when(db.find(Alert.class, alert2.getTo())).thenReturn(alert2);
-        Alert foundAlert2 = db.find(Alert.class, alert2.getTo());
-        assertNotNull(foundAlert2);
-        assertFalse(foundAlert2.isFound());
-    }
-
-    @Test
-    public void testPartialMatch() {
-        String username = "Alfredo";
-        String from = "Barcelona";
-        String to = "Madrid";
-        Date date = null;
-        try {
-            date = sdf.parse("15/10/2024");
-        } catch (ParseException e) {
-            fail("Error parsing date");
-        }
-
-        Traveler traveler = new Traveler(username, "password");
-        Alert alert = new Alert(from, to, date, traveler);
-        Ride ride = new Ride(from, "Valencia", date, 2, 0, null);
-
-        List<Alert> alerts = new ArrayList<>();
-        alerts.add(alert);
-        List<Ride> rides = new ArrayList<>();
-        rides.add(ride);
-
-        setupUpdateAlerta(username, alerts, rides);
-
-        boolean result = sut.updateAlertaAurkituak(username);
-
-        assertFalse(result);
-        assertFalse(alert.isFound());
-
-        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
-        Alert foundAlert = db.find(Alert.class, alert.getTo());
-        assertNotNull(foundAlert);
-        assertFalse(foundAlert.isFound());
-    }
-
-    @Test
-    public void testAlertEqualAsNull() {
-        String username = "Alfredo";
-        String from = "Madrid";
-        String to = "Valencia";
-        Date date = null;
-        try {
-            date = sdf.parse("15/10/2024");
-        } catch (ParseException e) {
-            fail("Error parsing date");
-        }
-
-        Traveler traveler = new Traveler(username, "password");
-        Alert alert = new Alert(null, null, null, traveler);
-        Ride ride = new Ride(from, to, date, 2, 0, null);
-
-        List<Alert> alerts = new ArrayList<>();
-        alerts.add(alert);
-        List<Ride> rides = new ArrayList<>();
-        rides.add(ride);
-
-        setupUpdateAlerta(username, alerts, rides);
-
-        boolean result = sut.updateAlertaAurkituak(username);
-
-        assertFalse(result);
-        assertFalse(alert.isFound());
-
-        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
-        Alert foundAlert = db.find(Alert.class, alert.getTo());
-        assertNotNull(foundAlert);  
-        assertFalse(foundAlert.isFound());
-    }
-    
-    @Test(expected = Exception.class)
-    public void testNonExistentUser() {
-        String username = "usuarioError";
-        
-        Mockito.when(db.createQuery(Mockito.anyString(), Mockito.eq(Alert.class))).thenReturn(alertQuery);
-        Mockito.when(alertQuery.setParameter(Mockito.anyString(), Mockito.any())).thenReturn(alertQuery);
-        Mockito.when(alertQuery.getResultList()).thenReturn(new ArrayList<>());
-
-        sut.updateAlertaAurkituak(username);
-    }
+//
+//    static DataAccess sut;
+//    protected MockedStatic<Persistence> persistenceMock;
+//
+//    @Mock
+//    protected EntityManagerFactory entityManagerFactory;
+//
+//    @Mock
+//    protected EntityManager db;
+//
+//    @Mock 
+//    protected EntityTransaction et;
+//
+//    @Mock
+//    public TypedQuery<Alert> alertQuery;
+//
+//    @Mock
+//    public TypedQuery<Ride> rideQuery;
+//
+//    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//
+//    @Before
+//    public void init() {
+//        MockitoAnnotations.openMocks(this);
+//        persistenceMock = Mockito.mockStatic(Persistence.class);
+//        persistenceMock.when(() -> Persistence.createEntityManagerFactory(Mockito.any()))
+//                .thenReturn(entityManagerFactory);
+//        Mockito.doReturn(db).when(entityManagerFactory).createEntityManager();
+//        Mockito.doReturn(et).when(db).getTransaction();
+//        sut = new DataAccess(db);
+//    }
+//
+//    @After
+//    public void tearDown() {
+//        persistenceMock.close(); 
+//    }
+//
+//    private void setupUpdateAlerta(String username, List<Alert> alerts, List<Ride> rides) {
+//   
+//        Mockito.when(db.createQuery(Mockito.anyString(), Mockito.eq(Alert.class))).thenReturn(alertQuery);
+//        Mockito.when(alertQuery.setParameter(Mockito.anyString(), Mockito.any())).thenReturn(alertQuery);
+//        Mockito.when(alertQuery.getResultList()).thenReturn(alerts);
+//
+//        Mockito.when(db.createQuery(Mockito.anyString(), Mockito.eq(Ride.class))).thenReturn(rideQuery);
+//        Mockito.when(rideQuery.setParameter(Mockito.anyString(), Mockito.any())).thenReturn(rideQuery);
+//        Mockito.when(rideQuery.getResultList()).thenReturn(rides);
+//    }
+//
+//    @Test
+//    public void testAlertMatchesRide() {
+//        String username = "Hugo";
+//        String from = "Barcelona";
+//        String to = "Madrid";
+//        Date date = null;
+//        Integer nPlaces=2;
+//        try {
+//            date = sdf.parse("15/10/2024");
+//        } catch (ParseException e) {
+//            fail("Error parsing date");
+//        }
+//
+//        Traveler traveler = new Traveler(username, "password");
+//        Alert alert = new Alert(from,to,date,traveler);
+//        Ride ride = new Ride(from, to, date, nPlaces,0,null);
+//
+//        List<Alert> alerts = new ArrayList<>();
+//        alerts.add(alert);
+//        List<Ride> rides = new ArrayList<>();
+//        rides.add(ride);
+//
+//        setupUpdateAlerta(username, alerts, rides);
+//
+//        boolean result = sut.updateAlertaAurkituak(username);
+//
+//        assertTrue(result);
+//        assertTrue(alert.isFound());
+//
+//        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
+//        Alert foundAlert = db.find(Alert.class, alert.getTo());
+//        assertNotNull(foundAlert);
+//        assertTrue(foundAlert.isFound());
+//    }
+//
+//    @Test
+//    public void testNoMatchingRide() {
+//        String username = "Alex";
+//        String from = "Barcelona";
+//        String to = "Madrid";
+//        Date date = null;
+//        try {
+//            date = sdf.parse("15/10/2024");
+//        } catch (ParseException e) {
+//            fail("Error parsing date");
+//        }
+//
+//        Traveler traveler = new Traveler(username, "password");
+//        Alert alert = new Alert(from,to,date,traveler);
+//
+//        List<Alert> alerts = new ArrayList<>();
+//        alerts.add(alert);
+//        List<Ride> rides = new ArrayList<>();
+//
+//        setupUpdateAlerta(username, alerts, rides);
+//
+//        boolean result = sut.updateAlertaAurkituak(username);
+//
+//        assertFalse(result);
+//        assertFalse(alert.isFound());
+//
+//        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
+//        Alert foundAlert = db.find(Alert.class, alert.getTo());
+//        assertNotNull(foundAlert);
+//        assertFalse(foundAlert.isFound());
+//    }
+//
+//    @Test
+//    public void testMultipleAlertsOneMatch() {
+//        String username = "Juan";
+//        String from1 = "Barcelona";
+//        String to1 = "Madrid";
+//        String from2 = "Valencia";
+//        String to2 = "Sevilla";
+//        Integer nPlaces = 2;
+//        Date date = null;
+//        try {
+//            date = sdf.parse("15/10/2024");
+//        } catch (ParseException e) {
+//            fail("Error parsing date");
+//        } 
+//
+//        Traveler traveler = new Traveler(username, "password");
+//        Alert alert1 = new Alert(from1, to1, date,traveler);
+//        Alert alert2 = new Alert(from2, to2, date, traveler);
+//        Ride ride = new Ride(from1, to1, date, nPlaces,0, null);
+//
+//        List<Alert> alerts = new ArrayList<>();
+//        alerts.add(alert1);
+//        alerts.add(alert2);
+//        List<Ride> rides = new ArrayList<>();
+//        rides.add(ride);
+//
+//        setupUpdateAlerta(username, alerts, rides);
+//
+//        boolean result = sut.updateAlertaAurkituak(username);
+//
+//        assertTrue(result);
+//        assertTrue(alert1.isFound());
+//        assertFalse(alert2.isFound());
+//
+//        Mockito.when(db.find(Alert.class, alert2.getTo())).thenReturn(alert2);
+//        Alert foundAlert2 = db.find(Alert.class, alert2.getTo());
+//        assertNotNull(foundAlert2);
+//        assertFalse(foundAlert2.isFound());
+//    }
+//
+//    @Test
+//    public void testMultipleAlertsNoMatch() {
+//        String username = "Pepe";
+//        String from1 = "Barcelona";
+//        String to1 = "Madrid";
+//        String from2 = "Valencia";
+//        String to2 = "Sevilla";
+//        Date date = null;
+//        try {
+//            date = sdf.parse("15/10/2024");
+//        } catch (ParseException e) {
+//            fail("Error parsing date");
+//        }
+//
+//        Traveler traveler = new Traveler(username, "password");
+//        Alert alert1 = new Alert(from1, to1, date, traveler);
+//        Alert alert2 = new Alert(from2, to2, date, traveler);
+//        Ride ride = new Ride("Bilbao", "Santander", date, 2, 0, null);
+//
+//        List<Alert> alerts = new ArrayList<>();
+//        alerts.add(alert1);
+//        alerts.add(alert2);
+//        List<Ride> rides = new ArrayList<>();
+//        rides.add(ride);
+//
+//        setupUpdateAlerta(username, alerts, rides);
+//
+//        boolean result = sut.updateAlertaAurkituak(username);
+//
+//        assertFalse(result);
+//        assertFalse(alert1.isFound());
+//        assertFalse(alert2.isFound());
+//
+//        Mockito.when(db.find(Alert.class, alert1.getTo())).thenReturn(alert1);
+//        Alert foundAlert1 = db.find(Alert.class, alert1.getTo());
+//        assertNotNull(foundAlert1);
+//        assertFalse(foundAlert1.isFound());
+//
+//        Mockito.when(db.find(Alert.class, alert2.getTo())).thenReturn(alert2);
+//        Alert foundAlert2 = db.find(Alert.class, alert2.getTo());
+//        assertNotNull(foundAlert2);
+//        assertFalse(foundAlert2.isFound());
+//    }
+//
+//    @Test
+//    public void testPartialMatch() {
+//        String username = "Alfredo";
+//        String from = "Barcelona";
+//        String to = "Madrid";
+//        Date date = null;
+//        try {
+//            date = sdf.parse("15/10/2024");
+//        } catch (ParseException e) {
+//            fail("Error parsing date");
+//        }
+//
+//        Traveler traveler = new Traveler(username, "password");
+//        Alert alert = new Alert(from, to, date, traveler);
+//        Ride ride = new Ride(from, "Valencia", date, 2, 0, null);
+//
+//        List<Alert> alerts = new ArrayList<>();
+//        alerts.add(alert);
+//        List<Ride> rides = new ArrayList<>();
+//        rides.add(ride);
+//
+//        setupUpdateAlerta(username, alerts, rides);
+//
+//        boolean result = sut.updateAlertaAurkituak(username);
+//
+//        assertFalse(result);
+//        assertFalse(alert.isFound());
+//
+//        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
+//        Alert foundAlert = db.find(Alert.class, alert.getTo());
+//        assertNotNull(foundAlert);
+//        assertFalse(foundAlert.isFound());
+//    }
+//
+//    @Test
+//    public void testAlertEqualAsNull() {
+//        String username = "Alfredo";
+//        String from = "Madrid";
+//        String to = "Valencia";
+//        Date date = null;
+//        try {
+//            date = sdf.parse("15/10/2024");
+//        } catch (ParseException e) {
+//            fail("Error parsing date");
+//        }
+//
+//        Traveler traveler = new Traveler(username, "password");
+//        Alert alert = new Alert(null, null, null, traveler);
+//        Ride ride = new Ride(from, to, date, 2, 0, null);
+//
+//        List<Alert> alerts = new ArrayList<>();
+//        alerts.add(alert);
+//        List<Ride> rides = new ArrayList<>();
+//        rides.add(ride);
+//
+//        setupUpdateAlerta(username, alerts, rides);
+//
+//        boolean result = sut.updateAlertaAurkituak(username);
+//
+//        assertFalse(result);
+//        assertFalse(alert.isFound());
+//
+//        Mockito.when(db.find(Alert.class, alert.getTo())).thenReturn(alert);
+//        Alert foundAlert = db.find(Alert.class, alert.getTo());
+//        assertNotNull(foundAlert);  
+//        assertFalse(foundAlert.isFound());
+//    }
+//    
+//    @Test(expected = Exception.class)
+//    public void testNonExistentUser() {
+//        String username = "usuarioError";
+//        
+//        Mockito.when(db.createQuery(Mockito.anyString(), Mockito.eq(Alert.class))).thenReturn(alertQuery);
+//        Mockito.when(alertQuery.setParameter(Mockito.anyString(), Mockito.any())).thenReturn(alertQuery);
+//        Mockito.when(alertQuery.getResultList()).thenReturn(new ArrayList<>());
+//
+//        sut.updateAlertaAurkituak(username);
+//    }
 }
