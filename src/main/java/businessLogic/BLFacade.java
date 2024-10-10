@@ -14,6 +14,7 @@ import domain.Discount;
 import domain.Driver;
 import domain.Complaint;
 import domain.Movement;
+import domain.RideObject;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 
@@ -41,6 +42,7 @@ public interface BLFacade {
 	 * @param from the depart location of a ride
 	 * @return all the arrival destinations
 	 */
+	//1
 	@WebMethod
 	public List<String> getDestinationCities(String from);
 
@@ -60,7 +62,7 @@ public interface BLFacade {
 	 *                                           the driver
 	 */
 	@WebMethod
-	public Ride createRide(String from, String to, Date date, int nPlaces, float price, String driverName)
+	public Ride createRide(RideObject rideObject, int nPlaces, float price, String driverName)
 			throws RideMustBeLaterThanTodayException, RideAlreadyExistException;
 
 	/**
@@ -177,5 +179,6 @@ public interface BLFacade {
 	public boolean deleteAlert(int alertNumber);
 
 	public Complaint getComplaintsByBook(Booking bo);
+
 
 }
