@@ -11,6 +11,7 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Ride;
+import domain.RideObject;
 import domain.Traveler;
 import domain.User;
 //import domain.Admin;
@@ -23,7 +24,7 @@ import domain.Complaint;
 import domain.Movement;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
-
+//1
 /**
  * It implements the business logic as a web service.
  */
@@ -83,23 +84,7 @@ public class BLFacadeImplementation implements BLFacade {
 	/**
 	 * {@inheritDoc}
 	 */
-	//LISTO 4 HUGO
-	public class RideObject {
-	    String from;
-	    String to;
-	    Date date;
 
-	    public RideObject(String from, String to, Date date) {
-	        this.from = from;
-	        this.to = to;
-	        this.date = date;
-	    }
- 
-	    public String getFrom() { return from; }
-	    public String getTo() { return to; }
-	    public Date getDate() { return date; }
-	}		
-	
 	@WebMethod
 	public Ride createRide(RideObject rideObject, int nPlaces, float price, String driverName)
 	    throws RideMustBeLaterThanTodayException, RideAlreadyExistException {
