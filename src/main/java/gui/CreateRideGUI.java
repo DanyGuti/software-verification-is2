@@ -18,9 +18,10 @@ import configuration.UtilDate;
 import domain.Car;
 import domain.Driver;
 import domain.Ride;
+import domain.RideObject;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
-
+//1
 public class CreateRideGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -209,7 +210,7 @@ public class CreateRideGUI extends JFrame {
 		});
 
 	}
-
+	
 	private void jButtonCreate_actionPerformed(ActionEvent e) {
 		jLabelMsg.setText("");
 		String error = field_Errors();
@@ -220,10 +221,10 @@ public class CreateRideGUI extends JFrame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				int inputSeats = (int) comboBoxSeats.getSelectedItem();
 				float price = Float.parseFloat(jTextFieldPrice.getText());
-
 				@SuppressWarnings("unused")
-				Ride r = facade.createRide(fieldOrigin.getText(), fieldDestination.getText(),
-						UtilDate.trim(jCalendar.getDate()), inputSeats, price, driver.getUsername());
+				RideObject RideObject = new RideObject (fieldOrigin.getText(), fieldDestination.getText(),
+						UtilDate.trim(jCalendar.getDate()));
+				Ride r = facade.createRide(RideObject,inputSeats, price, driver.getUsername());
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
 
 			} catch (RideMustBeLaterThanTodayException e1) {
