@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import RangeIterator.ExtendedIterator;
+import RangeIterator.RangeCities;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Ride;
@@ -65,6 +67,19 @@ public class BLFacadeImplementation implements BLFacade {
 
 		return departLocations;
 
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@WebMethod
+	public ExtendedIterator getDepartingCitiesIterator() {
+		dbManager.open();
+		
+		ExtendedIterator departLocations = dbManager.getDepartingCities();
+
+		dbManager.close();
+		
+		return departLocations;
 	}
 
 	/**

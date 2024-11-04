@@ -13,6 +13,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import RangeIterator.CitiesIterator;
+import RangeIterator.ExtendedIterator;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.*;
@@ -93,16 +95,16 @@ public class DataAccess {
 			db.persist(traveler2);
 
 			Calendar cal = Calendar.getInstance();
-			cal.set(2024, Calendar.MAY, 20);
+			cal.set(2024, Calendar.NOVEMBER, 20);
 			Date date1 = UtilDate.trim(cal.getTime());
 
-			cal.set(2024, Calendar.MAY, 30);
+			cal.set(2024, Calendar.NOVEMBER, 30);
 			Date date2 = UtilDate.trim(cal.getTime());
 
-			cal.set(2024, Calendar.MAY, 10);
+			cal.set(2024, Calendar.NOVEMBER, 10);
 			Date date3 = UtilDate.trim(cal.getTime());
 
-			cal.set(2024, Calendar.APRIL, 20);
+			cal.set(2024, Calendar.NOVEMBER, 20);
 			Date date4 = UtilDate.trim(cal.getTime());
 
 			driver1.addRide(DataAccess.CONST_DON, DataAccess.CONST_MAD, date2, 5, 20); //ride1
@@ -193,6 +195,13 @@ public class DataAccess {
 		List<String> cities = query.getResultList();
 		return cities;
 
+	}
+	
+	public ExtendedIterator getDepartingCities() {
+		TypedQuery<String> query = db.createQuery("SELECT DISTINCT r.from FROM Ride r ORDER BY r.from", String.class);
+		List<String> cityList = query.getResultList();
+		CitiesIterator citiesIterator = new CitiesIterator(cityList);
+		return citiesIterator;
 	}
 
 	/**
